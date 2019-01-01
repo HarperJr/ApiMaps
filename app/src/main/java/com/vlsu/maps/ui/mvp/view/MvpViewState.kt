@@ -5,5 +5,4 @@ interface MvpViewState<View : MvpView> {
     fun attachView(v: View)
 
     fun detachView(v: View)
-
 }

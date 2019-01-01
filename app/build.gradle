@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
@@ -19,12 +17,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField('String', 'GOOGLE_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
+            buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
         }
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
     }
+
 }
 
 dependencies {
