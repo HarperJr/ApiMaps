@@ -5,7 +5,7 @@ import com.vlsu.maps.ui.mvp.view.MvpView
 /**
  * @author Nikita Sychev
  **/
-abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View> {
+abstract class MvpViewPresenter<View : MvpView> : MvpPresenter<View> {
 
     var initialized: Boolean = false
 
@@ -18,7 +18,9 @@ abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View> {
         }
     }
 
-    abstract fun onInitialized();
+    abstract fun onInitialized()
+
+    abstract fun onDestroyed()
 
     override fun bind(v: View) {
         view = v

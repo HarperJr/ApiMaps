@@ -2,6 +2,7 @@ package com.vlsu.maps.ui.mvp.core
 
 import java.lang.IllegalStateException
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author Nikita Sychev

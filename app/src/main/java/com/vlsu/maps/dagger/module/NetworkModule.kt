@@ -1,6 +1,6 @@
-package com.vlsu.maps.ui.dagger.module
+package com.vlsu.maps.dagger.module
 
-import api.GoogleApi
+import com.vlsu.maps.api.GoogleApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

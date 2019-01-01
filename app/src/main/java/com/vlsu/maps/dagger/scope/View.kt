@@ -1,6 +1,5 @@
-package com.vlsu.maps.ui.dagger.scope
+package com.vlsu.maps.dagger.scope
 
-import java.lang.annotation.RetentionPolicy
 import javax.inject.Scope
 
 @Scope

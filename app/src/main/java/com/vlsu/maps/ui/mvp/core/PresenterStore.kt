@@ -2,6 +2,7 @@ package com.vlsu.maps.ui.mvp.core
 
 import com.vlsu.maps.ui.mvp.presenter.MvpPresenter
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author Nikita Sychev

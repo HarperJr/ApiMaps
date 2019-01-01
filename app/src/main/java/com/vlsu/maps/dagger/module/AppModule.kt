@@ -1,4 +1,4 @@
-package com.vlsu.maps.ui.dagger.module
+package com.vlsu.maps.dagger.module
 
 import android.content.Context
 import android.content.SharedPreferences

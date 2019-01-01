@@ -5,7 +5,7 @@ import com.vlsu.maps.ui.mvp.view.MvpView
 /**
  * @author Nikita Sychev
  **/
-interface MvpPresenter<in View : MvpView> {
+interface MvpPresenter<View : MvpView> {
 
     fun bind(v: View)
 
