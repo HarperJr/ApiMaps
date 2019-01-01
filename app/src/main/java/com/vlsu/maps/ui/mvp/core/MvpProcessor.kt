@@ -14,7 +14,7 @@ class MvpProcessor @Inject constructor(
     private val presenterCounter: PresenterCounter
 ) {
 
-    fun <P : MvpPresenter> getPresenter(presenterProvider: PresenterProvider<P>, tag: String): P {
+    fun <P : MvpPresenter<*>> getPresenter(presenterProvider: PresenterProvider<P>, tag: String): P {
         var presenter: P? = presenterStore.getPresenter<P>(tag)
         if (presenter == null) {
             presenter = presenterProvider.providePresenter()
@@ -24,7 +24,7 @@ class MvpProcessor @Inject constructor(
         return presenter
     }
 
-    fun <P : MvpPresenter> freePresenter(presenter: P, tag: String, keepAlive: Boolean) {
+    fun <P : MvpPresenter<*>> freePresenter(presenter: P, tag: String, keepAlive: Boolean) {
         if (presenterCounter.decrementCounter(tag)) {
             if (!keepAlive) {
                 presenterStore.removePresenter(tag)

@@ -8,13 +8,13 @@ import javax.inject.Inject
  **/
 class PresenterStore @Inject constructor() {
 
-    private val presenters = HashMap<String, MvpPresenter>()
+    private val presenters = HashMap<String, MvpPresenter<*>?>()
 
-    fun <P : MvpPresenter> getPresenter(tag: String): P {
+    fun <P : MvpPresenter<*>> getPresenter(tag: String): P? {
         return presenters[tag] as P
     }
 
-    fun putPresenter(tag: String, presenter: MvpPresenter) {
+    fun putPresenter(tag: String, presenter: MvpPresenter<*>) {
         presenters[tag] = presenter
     }
 

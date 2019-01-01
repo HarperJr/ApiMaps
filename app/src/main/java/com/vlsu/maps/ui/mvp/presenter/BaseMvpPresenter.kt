@@ -1,15 +1,15 @@
 package com.vlsu.maps.ui.mvp.presenter
 
-import com.vlsu.maps.ui.mvp.view.MVPView
+import com.vlsu.maps.ui.mvp.view.MvpView
 
 /**
  * @author Nikita Sychev
  **/
-abstract class BaseMvpPresenter<V : MVPView> : MvpPresenter<V> {
+abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View> {
 
     var initialized: Boolean = false
 
-    protected var view: V? = null
+    protected var view: View? = null
 
     fun initialize() {
         if (!initialized) {
@@ -20,11 +20,11 @@ abstract class BaseMvpPresenter<V : MVPView> : MvpPresenter<V> {
 
     abstract fun onInitialized();
 
-    override fun bind(v: V) {
+    override fun bind(v: View) {
         view = v
     }
 
-    override fun unbind(v: V) {
+    override fun unbind(v: View) {
         view = null
     }
 

@@ -1,13 +1,15 @@
 package com.vlsu.maps.ui.mvp.presenter
 
+import com.vlsu.maps.ui.mvp.view.MvpView
+
 /**
  * @author Nikita Sychev
  **/
-interface MvpPresenter<V> {
+interface MvpPresenter<in View : MvpView> {
 
-    fun bind(v: V)
+    fun bind(v: View)
 
-    fun unbind(v: V)
+    fun unbind(v: View)
 
     fun destroy()
 }
