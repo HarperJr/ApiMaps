@@ -3,9 +3,9 @@ package com.vlsu.maps.ui.mvp.presenter
 import com.vlsu.maps.ui.mvp.view.MvpView
 import com.vlsu.maps.ui.mvp.view.MvpViewState
 
-abstract class MvpViewStatePresenter<View : MvpView, ViewState: MvpViewState<View>>(private val viewState: MvpViewState<View>) : MvpPresenter<View> {
+abstract class MvpViewStatePresenter<View : MvpView, ViewState: MvpViewState<View>>(private val viewState: ViewState) : MvpPresenter<View> {
 
-    private var view: View = viewState as View
+    protected var view: View = viewState as View
     private var initialized = false
 
     fun initialize() {

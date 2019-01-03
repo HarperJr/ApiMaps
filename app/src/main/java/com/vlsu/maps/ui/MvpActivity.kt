@@ -5,7 +5,7 @@ import android.os.PersistableBundle
 import com.vlsu.maps.ui.mvp.MvpDelegate
 import com.vlsu.maps.ui.mvp.view.MvpView
 
-class MvpActivity : AbstractActivity() {
+open class MvpActivity : AbstractActivity() {
 
     private lateinit var mvpDelegate: MvpDelegate
 

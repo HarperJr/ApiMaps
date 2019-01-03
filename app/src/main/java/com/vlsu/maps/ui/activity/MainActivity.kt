@@ -2,12 +2,12 @@ package com.vlsu.maps.ui.activity
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
 import com.vlsu.maps.R
-
+import com.vlsu.maps.ui.MvpActivity
+import com.vlsu.maps.ui.activity.mvp.MainView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpActivity(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

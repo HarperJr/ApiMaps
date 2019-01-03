@@ -14,6 +14,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField('String', 'GOOGLE_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
+            buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
