@@ -15,14 +15,16 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField('String', 'GOOGLE_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
+            buildConfigField('String', 'GOOGLE_ROADS_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
+            buildConfigField('String', 'GOOGLE_MAPS_API_BASE_URL', '"https://maps.googleapis.com/maps/api/"')
             buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            buildConfigField('String', 'GOOGLE_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
+            buildConfigField('String', 'GOOGLE_ROADS_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
+            buildConfigField('String', 'GOOGLE_MAPS_API_BASE_URL', '"https://maps.googleapis.com/maps/api/"')
             buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
         }
         compileOptions {
@@ -30,7 +32,6 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
     }
-
 }
 
 dependencies {
@@ -49,6 +50,7 @@ dependencies {
     //Dagger
     implementation 'com.google.dagger:dagger:2.16'
     implementation 'com.google.dagger:dagger-producers:2.16'
+    implementation 'com.android.support:support-v4:28.0.0'
     kapt 'com.google.dagger:dagger-compiler:2.16'
     //Room
     implementation "android.arch.persistence.room:runtime:1.1.1"
@@ -64,4 +66,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
 }
