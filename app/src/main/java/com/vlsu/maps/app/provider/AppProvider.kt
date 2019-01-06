@@ -12,7 +12,7 @@ class AppProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         Dagger.setComponent(DaggerAppComponent.builder()
-            .appModule(AppModule(context))
+            .appModule(AppModule(context!!))
             .build())
         return false
     }
