@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.TileOverlayOptions
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState
 import com.vlsu.maps.R
@@ -21,20 +22,18 @@ import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
 
-    private val component = Dagger.getComponent()!!
+    private val component = Dagger.getComponent().mapComponent()
     private lateinit var googleMap: GoogleMap
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
+
+        map.getMapAsync(onMapReadyCallback)
 
         layersButton.setOnClickListener { presenter.onLayersButtonClicked() }
         zoomInButton.setOnClickListener { presenter.onZoomInButtonClicked() }
         zoomOutButton.setOnClickListener { presenter.onZoomOutButtonClicked() }
         locationButton.setOnClickListener { presenter.onLocationButtonClicked() }
-        map.getMapAsync(onMapReadyCallback)
 
         return view
     }
@@ -56,7 +55,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
     }
 
     override fun createViewState(): ViewState<MapView> {
-        return component.mapComponent().mapViewState()
+        return component.mapViewState()
     }
 
     override fun onNewViewStateInstance() {
@@ -64,10 +63,13 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
     }
 
     override fun createPresenter(): MapPresenter {
-        return component.mapComponent().mapPresenter()
+        return component.mapPresenter()
     }
 
     private val onMapReadyCallback = OnMapReadyCallback { googleMap ->
         this@MapFragment.googleMap = googleMap
+            .apply {
+                addTileOverlay(TileOverlayOptions().tileProvider(component.storageTileProvider()))
+            }
     }
 }

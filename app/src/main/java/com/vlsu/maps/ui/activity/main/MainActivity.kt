@@ -10,7 +10,7 @@ import com.vlsu.maps.ui.activity.main.mvp.MainView
 class MainActivity : MvpActivity<MainView, MainPresenter>(),
     MainView {
 
-    private val component = Dagger.getComponent()!!
+    private val component = Dagger.getComponent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,5 +21,4 @@ class MainActivity : MvpActivity<MainView, MainPresenter>(),
     override fun createPresenter(): MainPresenter {
         return component.mainPresenter()
     }
-
 }

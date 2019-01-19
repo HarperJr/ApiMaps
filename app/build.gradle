@@ -15,6 +15,8 @@ android {
     }
     buildTypes {
         debug {
+            buildConfigField('String', 'DATABASE_NAME', '"local.db"')
+            buildConfigField('int', 'DATABASE_VERSION', '0')
             buildConfigField('String', 'GOOGLE_ROADS_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
             buildConfigField('String', 'GOOGLE_MAPS_API_BASE_URL', '"https://maps.googleapis.com/maps/api/"')
             buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
@@ -23,6 +25,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
+            buildConfigField('String', 'DATABASE_NAME', '"local.db"')
+            buildConfigField('int', 'DATABASE_VERSION', '0')
             buildConfigField('String', 'GOOGLE_ROADS_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
             buildConfigField('String', 'GOOGLE_MAPS_API_BASE_URL', '"https://maps.googleapis.com/maps/api/"')
             buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
@@ -60,8 +64,7 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     //Mapstruct
     implementation 'org.mapstruct:mapstruct:1.2.0.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.2.0.Final'
-    testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.2.0.Final'
+    kapt 'org.mapstruct:mapstruct-processor:1.2.0.Final'
     //Mosby
     implementation 'com.hannesdorfmann.mosby:mvp:2.0.1'
     implementation 'com.hannesdorfmann.mosby:viewstate:2.0.1'

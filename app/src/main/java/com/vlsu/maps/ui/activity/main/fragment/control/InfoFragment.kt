@@ -12,7 +12,7 @@ import com.vlsu.maps.ui.activity.main.fragment.control.mvp.InfoView
 
 class InfoFragment : MvpFragment<InfoView, InfoPresenter>(), InfoView {
 
-    private val component = Dagger.getComponent()!!
+    private val component = Dagger.getComponent().infoComponent()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +22,6 @@ class InfoFragment : MvpFragment<InfoView, InfoPresenter>(), InfoView {
     }
 
     override fun createPresenter(): InfoPresenter {
-        return component.infoComponent().infoPresenter()
+        return component.infoPresenter()
     }
 }

@@ -2,7 +2,7 @@ package com.vlsu.maps.dagger
 
 class Dagger {
     companion object {
-        private var component: AppComponent? = null
+        private lateinit var component: AppComponent
 
         fun setComponent(component: AppComponent) {
             this.component = component

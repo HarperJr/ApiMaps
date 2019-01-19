@@ -4,16 +4,26 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
+import android.os.Handler
 import com.vlsu.maps.dagger.Dagger
 import com.vlsu.maps.dagger.DaggerAppComponent
 import com.vlsu.maps.dagger.module.AppModule
+import com.vlsu.maps.dagger.module.DatabaseModule
+import com.vlsu.maps.dagger.subcomponent.DaggerDatabaseComponent
 
 class AppProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
-        Dagger.setComponent(DaggerAppComponent.builder()
-            .appModule(AppModule(context!!))
-            .build())
+        /**Database component**/
+        val databaseComponent = DaggerDatabaseComponent.builder()
+            .databaseModule(DatabaseModule(context!!))
+            .build()
+        /**Application component**/
+        val appComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(context!!, Handler()))
+            .databaseComponent(databaseComponent)
+            .build()
+        Dagger.setComponent(appComponent)
         return false
     }
 

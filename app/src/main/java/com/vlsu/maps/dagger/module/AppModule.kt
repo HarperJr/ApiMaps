@@ -2,15 +2,19 @@ package com.vlsu.maps.dagger.module
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Handler
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class AppModule(private val context: Context) {
+class AppModule(private val context: Context, private val handler: Handler) {
 
     @Provides
     fun provideContext() = context
+
+    @Provides
+    fun provideHandler() = handler
 
     @Provides
     @Singleton
