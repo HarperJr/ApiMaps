@@ -19,16 +19,17 @@ class LocationUpdatesHandler @Inject constructor(context: Context) {
     }
 
     @Throws(SecurityException::class)
-    fun startUpdates(): PublishSubject<Location> {
+    fun startUpdates() {
         fusedLocationClient
             .requestLocationUpdates(locationRequest, locationCallback, null)
-        return updatesSubject
     }
 
     fun stopUpdates() {
         fusedLocationClient
             .removeLocationUpdates(locationCallback)
     }
+
+    fun updates() = updatesSubject
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Handler
 import com.vlsu.maps.dagger.module.AppModule
 import com.vlsu.maps.dagger.module.NetworkModule
+import com.vlsu.maps.dagger.module.NavigationModule
 import com.vlsu.maps.dagger.subcomponent.DatabaseComponent
 import com.vlsu.maps.dagger.subcomponent.InfoComponent
 import com.vlsu.maps.dagger.subcomponent.MapComponent
@@ -15,7 +16,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AppModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        NavigationModule::class
     ],
     dependencies = [
         DatabaseComponent::class

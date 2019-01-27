@@ -21,4 +21,8 @@ class MainActivity : MvpActivity<MainView, MainPresenter>(),
     override fun createPresenter(): MainPresenter {
         return component.mainPresenter()
     }
+
+    override fun onBackPressed() {
+        presenter.onBackPressed()
+    }
 }

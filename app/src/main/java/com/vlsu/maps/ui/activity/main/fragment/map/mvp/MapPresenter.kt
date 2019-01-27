@@ -7,6 +7,7 @@ import com.vlsu.maps.ui.handler.LocationUpdatesHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
+import org.osmdroid.util.GeoPoint
 import javax.inject.Inject
 
 class MapPresenter @Inject constructor(
@@ -17,11 +18,11 @@ class MapPresenter @Inject constructor(
     private var originFocused = false
 
     override fun attachView(view: MapView?) {
-        locationUpdatesDisposable = locationUpdatesHandler.startUpdates()
+        locationUpdatesDisposable = locationUpdatesHandler.updates()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { location ->
-                LatLng(location.latitude, location.longitude)
+                GeoPoint(location.latitude, location.longitude)
             }
             .subscribe { location ->
                 if (originFocused) {
