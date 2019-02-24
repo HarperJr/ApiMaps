@@ -17,9 +17,7 @@ android {
         debug {
             buildConfigField('String', 'DATABASE_NAME', '"local.db"')
             buildConfigField('int', 'DATABASE_VERSION', '0')
-            buildConfigField('String', 'GOOGLE_ROADS_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
-            buildConfigField('String', 'GOOGLE_MAPS_API_BASE_URL', '"https://maps.googleapis.com/maps/api/"')
-            buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
+            buildConfigField('String', 'MAPBOX_TOKEN', '"pk.eyJ1IjoiaGFycGVyanIiLCJhIjoiY2pzaG1kNjV1MDkzNzQzbGk0NDMwendrMSJ9.fPUWoaQetd1JgyFHaIXTGw"')
         }
         release {
             minifyEnabled false
@@ -27,9 +25,7 @@ android {
 
             buildConfigField('String', 'DATABASE_NAME', '"local.db"')
             buildConfigField('int', 'DATABASE_VERSION', '0')
-            buildConfigField('String', 'GOOGLE_ROADS_API_BASE_URL', '"https://roads.googleapis.com/v1/"')
-            buildConfigField('String', 'GOOGLE_MAPS_API_BASE_URL', '"https://maps.googleapis.com/maps/api/"')
-            buildConfigField('String', 'GOOGLE_API_KEY', '"AIzaSyBERBeGfsiLP-DIVk_JnM1zN8WP_tLkDew"')
+            buildConfigField('String', 'MAPBOX_TOKEN', '"pk.eyJ1IjoiaGFycGVyanIiLCJhIjoiY2pzaG1kNjV1MDkzNzQzbGk0NDMwendrMSJ9.fPUWoaQetd1JgyFHaIXTGw"')
         }
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
@@ -67,12 +63,12 @@ dependencies {
     //Mosby
     implementation 'com.hannesdorfmann.mosby:mvp:2.0.1'
     implementation 'com.hannesdorfmann.mosby:viewstate:2.0.1'
-    //Osm
-    implementation 'org.osmdroid:osmdroid-android:6.0.3'
     //Ciceron
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
     //Adapter delegates
     //implementation 'com.hannesdorfmann:adapterdelegates4:4.0.0'
+    //MapBox
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.1.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

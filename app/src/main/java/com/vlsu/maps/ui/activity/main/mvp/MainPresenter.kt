@@ -17,6 +17,10 @@ class MainPresenter @Inject constructor(
 
     }
 
+    fun openMap() {
+        router.navigateTo(MapScreen())
+    }
+
     fun onBackPressed() {
         router.exit()
     }

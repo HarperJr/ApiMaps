@@ -1,8 +1,7 @@
 package com.vlsu.maps.ui.activity.main.fragment.map.mvp
 
-import com.google.android.gms.maps.model.LatLng
 import com.hannesdorfmann.mosby.mvp.MvpView
-import org.osmdroid.util.GeoPoint
+import com.mapbox.mapboxsdk.geometry.LatLng
 
 interface MapView : MvpView {
 
@@ -12,5 +11,5 @@ interface MapView : MvpView {
 
     fun showLayersDialog()
 
-    fun setOriginLocation(location: GeoPoint)
+    fun setOriginLocation(location: LatLng)
 }

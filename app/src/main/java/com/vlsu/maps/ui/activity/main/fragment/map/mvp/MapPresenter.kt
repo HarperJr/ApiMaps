@@ -2,12 +2,10 @@ package com.vlsu.maps.ui.activity.main.fragment.map.mvp
 
 import com.google.android.gms.maps.model.LatLng
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
-import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.vlsu.maps.ui.handler.LocationUpdatesHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
-import org.osmdroid.util.GeoPoint
 import javax.inject.Inject
 
 class MapPresenter @Inject constructor(
@@ -22,11 +20,11 @@ class MapPresenter @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { location ->
-                GeoPoint(location.latitude, location.longitude)
+                LatLng(location.latitude, location.longitude)
             }
             .subscribe { location ->
                 if (originFocused) {
-                    view?.setOriginLocation(location)
+
                 }
             }
     }
