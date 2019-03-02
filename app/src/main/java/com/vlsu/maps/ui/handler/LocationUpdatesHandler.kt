@@ -33,12 +33,8 @@ class LocationUpdatesHandler @Inject constructor(context: Context) {
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
-            if (locationResult == null) {
-                updatesSubject.onError(Exception("Location update is unavailable"))
-            } else {
-                for (location in locationResult.locations) {
-                    updatesSubject.onNext(location)
-                }
+            if (locationResult != null)  {
+                updatesSubject.onNext(locationResult.lastLocation)
             }
         }
     }

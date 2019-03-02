@@ -3,12 +3,9 @@ package com.vlsu.maps.dagger
 import android.content.SharedPreferences
 import android.os.Handler
 import com.vlsu.maps.dagger.module.AppModule
-import com.vlsu.maps.dagger.module.NetworkModule
 import com.vlsu.maps.dagger.module.NavigationModule
-import com.vlsu.maps.dagger.subcomponent.DatabaseComponent
-import com.vlsu.maps.dagger.subcomponent.InfoComponent
-import com.vlsu.maps.dagger.subcomponent.MapComponent
-import com.vlsu.maps.ui.activity.main.mvp.MainPresenter
+import com.vlsu.maps.dagger.module.NetworkModule
+import com.vlsu.maps.dagger.subcomponent.*
 import dagger.Component
 import javax.inject.Singleton
 
@@ -27,9 +24,11 @@ interface AppComponent {
 
     fun sharedPreferences(): SharedPreferences
 
-    fun mainPresenter(): MainPresenter
+    fun mainComponent(): MainComponent
 
     fun mapComponent(): MapComponent
+
+    fun notificationComponent(): NotificationComponent
 
     fun infoComponent(): InfoComponent
 

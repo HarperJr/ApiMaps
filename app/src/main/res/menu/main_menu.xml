@@ -12,7 +12,7 @@
           android:title="@string/selectionNotifications"
           app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/menuSelectionDetails"
+    <item android:id="@+id/menuSelectionInfo"
           android:icon="@drawable/ic_unknown"
           android:title="@string/selectionDetails"
           app:showAsAction="ifRoom"/>

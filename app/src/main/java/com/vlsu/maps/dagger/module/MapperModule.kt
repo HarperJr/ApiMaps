@@ -1,6 +1,6 @@
 package com.vlsu.maps.dagger.module
 
-import com.vlsu.maps.database.mapper.TileMapper
+import com.vlsu.maps.database.mapper.NotificationMapper
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -11,5 +11,5 @@ class MapperModule {
 
     @Provides
     @Reusable
-    fun provideTileMapper(): TileMapper = Mappers.getMapper(TileMapper::class.java)
+    fun provideNotificationMapper() = Mappers.getMapper(NotificationMapper::class.java)!!
 }

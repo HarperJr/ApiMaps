@@ -11,7 +11,6 @@ class ApiKeyInterceptor @Inject constructor() : Interceptor {
         val url = chain.request()
             .url()
             .newBuilder()
-            .addQueryParameter(API_KEY, BuildConfig.GOOGLE_API_KEY)
             .build()
         val requestBuilder = chain.request()
             .newBuilder()
