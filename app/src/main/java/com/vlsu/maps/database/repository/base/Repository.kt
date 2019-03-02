@@ -1,6 +1,6 @@
-package com.vlsu.maps.database.repository
+package com.vlsu.maps.database.repository.base
 
-interface BaseRepository<Model, Id> {
+interface Repository<Model, Id> {
 
     fun find(id: Id): Model?
 

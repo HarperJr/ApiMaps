@@ -1,16 +1,15 @@
-package com.vlsu.maps.database.repository
+package com.vlsu.maps.database.repository.base
 
 import android.arch.persistence.db.SimpleSQLiteQuery
 import com.vlsu.maps.database.dao.BaseDao
 import com.vlsu.maps.database.mapper.BaseMapper
 
-abstract class RepositoryImpl<Entity, Model, Id> : BaseRepository<Model, Id> {
+abstract class RepositoryImpl<Entity, Model, Id>(
+    private val dao: BaseDao<Entity>,
+    private val mapper: BaseMapper<Model, Entity>
+) : Repository<Model, Id> {
 
-    protected abstract val dao: BaseDao<Entity>
-
-    protected abstract val mapper: BaseMapper<Model, Entity>
-
-    protected val table by lazy(LazyThreadSafetyMode.NONE) {
+    private val table by lazy(LazyThreadSafetyMode.NONE) {
         val className = dao::class.simpleName!!
         className.substring(0, className.length - "Dao_Impl".length)
     }

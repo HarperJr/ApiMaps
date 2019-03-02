@@ -39,6 +39,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
         zoomInButton.setOnClickListener { presenter.onZoomInButtonClicked() }
         zoomOutButton.setOnClickListener { presenter.onZoomOutButtonClicked() }
         locationButton.setOnClickListener { presenter.onLocationButtonClicked() }
+
         mapView.getMapAsync(mapDelegate)
     }
 
@@ -63,11 +64,11 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
     }
 
     override fun zoomIn() {
-
+        mapDelegate.zoomIn()
     }
 
     override fun zoomOut() {
-
+        mapDelegate.zoomOut()
     }
 
     override fun showLayersDialog() {

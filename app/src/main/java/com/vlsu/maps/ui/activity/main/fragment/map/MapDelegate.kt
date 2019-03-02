@@ -1,6 +1,7 @@
 package com.vlsu.maps.ui.activity.main.fragment.map
 
 import android.content.Context
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
@@ -24,23 +25,23 @@ class MapDelegate @Inject constructor(
                         isAttributionEnabled = false
                         isLogoEnabled = false
                     }
-                    setMinZoomPreference(10.0)
-                    setMaxZoomPreference(20.0)
+                    setMinZoomPreference(Constants.MIN_ZOOM)
+                    setMaxZoomPreference(Constants.MAX_ZOOM)
                 }
             }
         }
     }
 
     fun zoomIn() {
-
+        map.animateCamera(CameraUpdateFactory.zoomIn())
     }
 
     fun zoomOut() {
-
+        map.animateCamera(CameraUpdateFactory.zoomOut())
     }
 
     fun zoom(zoom: Double) {
-
+        map.animateCamera(CameraUpdateFactory.zoomBy(zoom))
     }
 
     fun setMapCenter() {
