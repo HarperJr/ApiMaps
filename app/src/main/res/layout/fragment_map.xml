@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="match_parent"
         tools:context=".ui.activity.main.fragment.map.MapFragment">
 
     <com.mapbox.mapboxsdk.maps.MapView
@@ -12,6 +11,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    <include layout="@layout/content_control"/>
+    <android.support.design.widget.FloatingActionButton
+            style="@style/AppTheme.WhiteFloatingActionButton"
+            android:id="@+id/layersButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/buttonsGuidLine"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="64dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+            style="@style/AppTheme.WhiteFloatingActionButton"
+            android:id="@+id/zoomInButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layersButton"
+            app:layout_constraintEnd_toStartOf="@+id/buttonsGuidLine"
+            android:layout_marginTop="82dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+            style="@style/AppTheme.WhiteFloatingActionButton"
+            android:id="@+id/zoomOutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/zoomInButton"
+            app:layout_constraintEnd_toStartOf="@id/buttonsGuidLine"
+            android:layout_marginTop="16dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+            style="@style/AppTheme.WhiteFloatingActionButton"
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/zoomOutButton"
+            app:layout_constraintEnd_toStartOf="@+id/buttonsGuidLine"
+            android:layout_marginTop="84dp"/>
+
+    <android.support.constraint.Group
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/buttonsGroup"
+            app:constraint_referenced_ids="zoomOutButton,layersButton,zoomInButton,locationButton"/>
+
+    <android.support.constraint.Guideline
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/buttonsGuidLine"
+            android:orientation="vertical" app:layout_constraintGuide_end="16dp"/>
 
 </android.support.constraint.ConstraintLayout>

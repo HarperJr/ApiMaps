@@ -24,4 +24,8 @@ class InfoFragment : MvpFragment<InfoView, InfoPresenter>(), InfoView {
     override fun createPresenter(): InfoPresenter {
         return component.infoPresenter()
     }
+
+    companion object {
+        fun newInstance() = InfoFragment()
+    }
 }

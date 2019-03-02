@@ -5,11 +5,14 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import android.os.Handler
+import com.mapbox.mapboxsdk.Mapbox
+import com.vlsu.maps.BuildConfig
 import com.vlsu.maps.dagger.Dagger
 import com.vlsu.maps.dagger.DaggerAppComponent
 import com.vlsu.maps.dagger.module.AppModule
 import com.vlsu.maps.dagger.module.DatabaseModule
 import com.vlsu.maps.dagger.subcomponent.DaggerDatabaseComponent
+import timber.log.Timber
 
 class AppProvider : ContentProvider() {
 
@@ -24,6 +27,8 @@ class AppProvider : ContentProvider() {
             .databaseComponent(databaseComponent)
             .build()
         Dagger.setComponent(appComponent)
+        Timber.plant(Timber.DebugTree())
+        Mapbox.getInstance(context!!, BuildConfig.MAPBOX_TOKEN)
         return false
     }
 

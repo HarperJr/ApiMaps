@@ -7,6 +7,7 @@ import com.vlsu.maps.dagger.module.NetworkModule
 import com.vlsu.maps.dagger.module.NavigationModule
 import com.vlsu.maps.dagger.subcomponent.DatabaseComponent
 import com.vlsu.maps.dagger.subcomponent.InfoComponent
+import com.vlsu.maps.dagger.subcomponent.MainComponent
 import com.vlsu.maps.dagger.subcomponent.MapComponent
 import com.vlsu.maps.ui.activity.main.mvp.MainPresenter
 import dagger.Component
@@ -27,7 +28,7 @@ interface AppComponent {
 
     fun sharedPreferences(): SharedPreferences
 
-    fun mainPresenter(): MainPresenter
+    fun mainComponent(): MainComponent
 
     fun mapComponent(): MapComponent
 

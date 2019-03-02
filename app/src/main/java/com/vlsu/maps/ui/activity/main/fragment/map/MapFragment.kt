@@ -12,7 +12,7 @@ import com.vlsu.maps.R
 import com.vlsu.maps.dagger.Dagger
 import com.vlsu.maps.ui.activity.main.fragment.map.mvp.MapPresenter
 import com.vlsu.maps.ui.activity.main.fragment.map.mvp.MapView
-import kotlinx.android.synthetic.main.content_control.*
+import kotlinx.android.synthetic.main.fragment_map.*
 
 
 class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
@@ -29,16 +29,16 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
             .apply {
                 onCreate(savedInstanceState)
             }
-        layersButton.setOnClickListener { presenter.onLayersButtonClicked() }
-        zoomInButton.setOnClickListener { presenter.onZoomInButtonClicked() }
-        zoomOutButton.setOnClickListener { presenter.onZoomOutButtonClicked() }
-        locationButton.setOnClickListener { presenter.onLocationButtonClicked() }
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        layersButton.setOnClickListener { presenter.onLayersButtonClicked() }
+        zoomInButton.setOnClickListener { presenter.onZoomInButtonClicked() }
+        zoomOutButton.setOnClickListener { presenter.onZoomOutButtonClicked() }
+        locationButton.setOnClickListener { presenter.onLocationButtonClicked() }
         mapView.getMapAsync(mapDelegate)
     }
 
@@ -90,4 +90,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter>(), MapView {
         return component.mapPresenter()
     }
 
+    companion object {
+        fun newInstance() = MapFragment()
+    }
 }

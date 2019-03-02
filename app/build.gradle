@@ -64,11 +64,13 @@ dependencies {
     implementation 'com.hannesdorfmann.mosby:mvp:2.0.1'
     implementation 'com.hannesdorfmann.mosby:viewstate:2.0.1'
     //Ciceron
-    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
+    implementation 'ru.terrakok.cicerone:cicerone:4.0.2'
     //Adapter delegates
     //implementation 'com.hannesdorfmann:adapterdelegates4:4.0.0'
     //MapBox
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.1.2'
+    //Timber
+    implementation "com.jakewharton.timber:timber:4.7.1"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
