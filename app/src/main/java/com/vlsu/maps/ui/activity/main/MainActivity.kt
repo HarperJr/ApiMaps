@@ -2,6 +2,8 @@ package com.vlsu.maps.ui.activity.main
 
 import android.Manifest
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
+import android.view.MenuItem
 import com.hannesdorfmann.mosby.mvp.MvpActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.vlsu.maps.R
@@ -11,12 +13,13 @@ import com.vlsu.maps.ui.activity.main.mvp.MainPresenter
 import com.vlsu.maps.ui.activity.main.mvp.MainView
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.NavigatorHolder
 import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : MvpActivity<MainView, MainPresenter>(),
-    MainView {
+    MainView, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val component = Dagger.getComponent().mainComponent()
     @Inject
@@ -32,10 +35,29 @@ class MainActivity : MvpActivity<MainView, MainPresenter>(),
         component.inject(this)
 
         setContentView(R.layout.activity_main)
+        bottomNavigationBar.setOnNavigationItemSelectedListener(this)
     }
 
     override fun createPresenter(): MainPresenter {
         return component.mainPresenter()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menuSelectionMap -> {
+                presenter.navigateToMap()
+                true
+            }
+            R.id.menuSelectionNotifications -> {
+                presenter.navigateToNotifications()
+                true
+            }
+            R.id.menuSelectionInfo -> {
+                presenter.navigateToInfo()
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onResume() {

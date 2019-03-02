@@ -1,4 +1,4 @@
-package com.vlsu.maps.ui.activity.main.fragment.control
+package com.vlsu.maps.ui.activity.main.fragment.info
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import com.hannesdorfmann.mosby.mvp.MvpFragment
 import com.vlsu.maps.R
 import com.vlsu.maps.dagger.Dagger
-import com.vlsu.maps.ui.activity.main.fragment.control.mvp.InfoPresenter
-import com.vlsu.maps.ui.activity.main.fragment.control.mvp.InfoView
+import com.vlsu.maps.ui.activity.main.fragment.info.mvp.InfoPresenter
+import com.vlsu.maps.ui.activity.main.fragment.info.mvp.InfoView
 
 class InfoFragment : MvpFragment<InfoView, InfoPresenter>(), InfoView {
 
