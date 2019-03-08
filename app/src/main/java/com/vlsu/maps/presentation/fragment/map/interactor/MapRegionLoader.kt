@@ -1,8 +1,10 @@
 package com.vlsu.maps.presentation.fragment.map.interactor
 
 import android.content.Context
+import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.offline.*
+import com.vlsu.maps.domain.model.Region
 import io.reactivex.subjects.BehaviorSubject
 import org.json.JSONObject
 import timber.log.Timber
@@ -43,8 +45,13 @@ class MapRegionLoader @Inject constructor(
     }
 
     fun loadRegion(region: Region) {
+        val latlngBounds = LatLngBounds.from(region.north, region.east, region.south, region.west)
         val definition = OfflineTilePyramidRegionDefinition(
-            Style.MAPBOX_STREETS, region.latlngBounds, Constants.MIN_ZOOM, Constants.MAX_ZOOM, context.resources.displayMetrics.density
+            Style.MAPBOX_STREETS,
+            latlngBounds,
+            Constants.MIN_ZOOM,
+            Constants.MAX_ZOOM,
+            context.resources.displayMetrics.density
         )
         var metadata: ByteArray = byteArrayOf()
         try {

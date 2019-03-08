@@ -9,4 +9,7 @@ class DaoModule {
 
     @Provides
     fun provideNotificationDao(database: Database) = database.notificationDao()
+
+    @Provides
+    fun provideRegionDao(database: Database) = database.regionDao()
 }

@@ -12,7 +12,6 @@ import dagger.Provides
 
 @Module(
     includes = [
-        RepositoryModule::class,
         MapperModule::class,
         DaoModule::class
     ]

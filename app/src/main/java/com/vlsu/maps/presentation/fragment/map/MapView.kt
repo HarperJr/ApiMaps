@@ -5,6 +5,10 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 
 interface MapView : MvpView {
 
+    fun showRegionSelectorDialog()
+
+    fun hideRegionSelectorDialog()
+
     fun zoomIn()
 
     fun zoomOut()

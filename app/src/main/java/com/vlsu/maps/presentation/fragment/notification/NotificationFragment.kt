@@ -11,9 +11,6 @@ import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
 import com.vlsu.maps.presentation.fragment.notification.adapter.NotificationDelegate
 import com.vlsu.maps.presentation.fragment.notification.adapter.NotificationItem
-import com.vlsu.maps.presentation.fragment.notification.mvp.NotificationPresenter
-import com.vlsu.maps.presentation.fragment.notification.mvp.NotificationView
-import com.vlsu.maps.presentation.fragment.notification.mvp.NotificationViewState
 import kotlinx.android.synthetic.main.fragment_notification.*
 
 

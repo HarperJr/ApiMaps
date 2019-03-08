@@ -8,7 +8,7 @@ interface DbTransaction {
 
     fun endTransaction()
 
-    fun runInTransaction(runnable: () -> Runnable)
+    fun runInTransaction(runnable: () -> Unit)
 
     fun <T> runInTransaction(callable: () -> Callable<T>): T
 }

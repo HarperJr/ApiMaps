@@ -14,7 +14,7 @@ class DbTransactionImpl(private val database: Database) :
         database.endTransaction()
     }
 
-    override fun runInTransaction(runnable: () -> Runnable) {
+    override fun runInTransaction(runnable: () -> Unit) {
         database.runInTransaction(runnable)
     }
 

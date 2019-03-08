@@ -1,0 +1,44 @@
+[
+  {
+    "vladimir": {
+      "id": 0,
+      "code": "vladimir",
+      "name": "Владимир",
+      "order": 3,
+      "north": 56.202674,
+      "south": 40.523022,
+      "east": 56.111151,
+      "west": 40.313821
+    },
+    "moscow": {
+      "id": 1,
+      "code": "vladimir",
+      "name": "Москва",
+      "order": 0,
+      "north": 1,
+      "south": 1,
+      "east": 1,
+      "west": 1
+    },
+    "kineshma": {
+      "id": 2,
+      "code": "vladimir",
+      "name": "Кинешма",
+      "order": 4,
+      "north": 1,
+      "south": 1,
+      "east": 1,
+      "west": 1
+    },
+    "ivanovo": {
+      "id": 3,
+      "code": "vladimir",
+      "name": "Иваново",
+      "order": 2,
+      "north": 1,
+      "south": 1,
+      "east": 1,
+      "west": 1
+    }
+  }
+]

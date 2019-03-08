@@ -9,6 +9,7 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
+import com.vlsu.maps.presentation.dialog.RegionSelectorDialogFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
@@ -61,6 +62,14 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         mapView.onDestroy()
     }
 
+    override fun showRegionSelectorDialog() {
+        regionSelectorDialog.show(childFragmentManager, REGION_SELECTOR_DIALOG_TAG)
+    }
+
+    override fun hideRegionSelectorDialog() {
+        regionSelectorDialog.dismiss()
+    }
+
     override fun zoomIn() {
         mapDelegate.zoomIn()
     }
@@ -89,7 +98,19 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         return component.mapPresenter()
     }
 
+    private val regionSelectorDialog by lazy {
+        childFragmentManager.findFragmentByTag(REGION_SELECTOR_DIALOG_TAG) as RegionSelectorDialogFragment?
+            ?: RegionSelectorDialogFragment.newInstance()
+                .also {
+                    childFragmentManager.beginTransaction()
+                        .add(it, REGION_SELECTOR_DIALOG_TAG)
+                        .commitNow()
+                }
+    }
+
     companion object {
         fun newInstance() = MapFragment()
+
+        const val REGION_SELECTOR_DIALOG_TAG = "REGION_SELECTOR_DIALOG_TAG"
     }
 }

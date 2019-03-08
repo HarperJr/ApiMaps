@@ -1,4 +1,4 @@
-package com.vlsu.maps.domain.interactor
+package com.vlsu.maps.domain.interactor.location
 
 import android.content.Context
 import android.location.Location
@@ -33,7 +33,7 @@ class LocationUpdatesInteractor @Inject constructor(context: Context) {
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
-            if (locationResult != null)  {
+            if (locationResult != null) {
                 updatesSubject.onNext(locationResult.lastLocation)
             }
         }

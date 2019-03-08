@@ -8,5 +8,4 @@ class MapViewState @Inject constructor() : ViewState<MapView> {
     override fun apply(view: MapView?, retained: Boolean) {
 
     }
-
 }

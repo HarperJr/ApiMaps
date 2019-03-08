@@ -1,5 +1,7 @@
 package com.vlsu.maps.di.module
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.vlsu.maps.data.api.client.ClientSettings
 import dagger.Module
@@ -13,9 +15,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(clientSettings: ClientSettings): Retrofit.Builder {
+    fun provideGson(): Gson = GsonBuilder().create()
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(clientSettings: ClientSettings, gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(clientSettings.getClient())
     }
