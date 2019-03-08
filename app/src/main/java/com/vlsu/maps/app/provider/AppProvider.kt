@@ -7,11 +7,12 @@ import android.net.Uri
 import android.os.Handler
 import com.mapbox.mapboxsdk.Mapbox
 import com.vlsu.maps.BuildConfig
-import com.vlsu.maps.dagger.Dagger
-import com.vlsu.maps.dagger.DaggerAppComponent
-import com.vlsu.maps.dagger.module.AppModule
-import com.vlsu.maps.dagger.module.DatabaseModule
-import com.vlsu.maps.dagger.subcomponent.DaggerDatabaseComponent
+import com.vlsu.maps.di.Dagger
+import com.vlsu.maps.di.DaggerAppComponent
+import com.vlsu.maps.di.DaggerDatabaseComponent
+import com.vlsu.maps.di.DaggerDialogComponent
+import com.vlsu.maps.di.module.AppModule
+import com.vlsu.maps.di.module.DatabaseModule
 import timber.log.Timber
 
 class AppProvider : ContentProvider() {
@@ -26,9 +27,17 @@ class AppProvider : ContentProvider() {
             .appModule(AppModule(context!!, Handler()))
             .databaseComponent(databaseComponent)
             .build()
-        Dagger.setComponent(appComponent)
+        /**Dialog component**/
+        val dialogComponent = DaggerDialogComponent.builder()
+            .appComponent(appComponent)
+            .build()
+        Dagger.appComponent = appComponent
+        Dagger.databaseComponent = databaseComponent
+        Dagger.dialogComponent = dialogComponent
+
         Timber.plant(Timber.DebugTree())
         Mapbox.getInstance(context!!, BuildConfig.MAPBOX_TOKEN)
+
         return false
     }
 

@@ -64,8 +64,8 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.2.0.Final'
     kapt 'org.mapstruct:mapstruct-processor:1.2.0.Final'
     //Mosby
-    implementation 'com.hannesdorfmann.mosby:mvp:2.0.1'
-    implementation 'com.hannesdorfmann.mosby:viewstate:2.0.1'
+    implementation 'com.hannesdorfmann.mosby3:mvp:3.1.1'
+    implementation 'com.hannesdorfmann.mosby3:viewstate:3.1.1'
     //Ciceron
     implementation 'ru.terrakok.cicerone:cicerone:4.0.2'
     //Adapter delegates

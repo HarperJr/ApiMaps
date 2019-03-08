@@ -1,8 +1,8 @@
 package com.vlsu.maps.navigation
 
-import com.vlsu.maps.ui.activity.main.fragment.info.InfoScreen
-import com.vlsu.maps.ui.activity.main.fragment.map.MapScreen
-import com.vlsu.maps.ui.activity.main.fragment.notification.NotificationScreen
+import com.vlsu.maps.presentation.fragment.info.InfoScreen
+import com.vlsu.maps.presentation.fragment.map.MapScreen
+import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
 
 class Navigation {
 
