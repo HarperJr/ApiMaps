@@ -6,10 +6,10 @@ import com.vlsu.maps.di.module.AppModule
 import com.vlsu.maps.di.module.NavigationModule
 import com.vlsu.maps.di.module.NetworkModule
 import com.vlsu.maps.di.scope.AppScope
-import com.vlsu.maps.di.subcomponent.app.InfoComponent
 import com.vlsu.maps.di.subcomponent.app.MainComponent
 import com.vlsu.maps.di.subcomponent.app.MapComponent
 import com.vlsu.maps.di.subcomponent.app.NotificationComponent
+import com.vlsu.maps.di.subcomponent.app.SettingsComponent
 import dagger.Component
 
 @AppScope
@@ -33,7 +33,7 @@ interface AppComponent {
 
     fun notificationComponent(): NotificationComponent
 
-    fun infoComponent(): InfoComponent
+    fun settingsComponent(): SettingsComponent
 
     fun handler(): Handler
 }

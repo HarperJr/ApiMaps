@@ -12,7 +12,7 @@
             android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
-            style="@style/AppTheme.WhiteFloatingActionButton"
+            style="@style/AppTheme.FloatingActionButton.White"
             android:id="@+id/layersButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:layout_marginTop="64dp"/>
 
     <android.support.design.widget.FloatingActionButton
-            style="@style/AppTheme.WhiteFloatingActionButton"
+            style="@style/AppTheme.FloatingActionButton.White"
             android:id="@+id/zoomInButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_marginTop="82dp"/>
 
     <android.support.design.widget.FloatingActionButton
-            style="@style/AppTheme.WhiteFloatingActionButton"
+            style="@style/AppTheme.FloatingActionButton.White"
             android:id="@+id/zoomOutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             android:layout_marginTop="16dp"/>
 
     <android.support.design.widget.FloatingActionButton
-            style="@style/AppTheme.WhiteFloatingActionButton"
+            style="@style/AppTheme.FloatingActionButton.White"
             android:id="@+id/locationButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

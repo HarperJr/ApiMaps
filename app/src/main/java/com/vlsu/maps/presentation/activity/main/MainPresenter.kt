@@ -1,7 +1,7 @@
 package com.vlsu.maps.presentation.activity.main
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
-import com.vlsu.maps.presentation.fragment.info.InfoScreen
+import com.vlsu.maps.presentation.fragment.info.SettingsScreen
 import com.vlsu.maps.presentation.fragment.map.MapScreen
 import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
 import ru.terrakok.cicerone.Router
@@ -33,6 +33,6 @@ class MainPresenter @Inject constructor(
 
     fun navigateToInfo() {
         Timber.d("navigateToInfo")
-        router.navigateTo(InfoScreen())
+        router.navigateTo(SettingsScreen())
     }
 }

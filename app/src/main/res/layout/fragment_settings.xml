@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tool="http://schemas.android.com/tools"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:background="@color/colorPrimary"
+                android:divider="@drawable/divider"
+                android:showDividers="beginning|middle|end"
+                android:dividerPadding="3dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <TextView
+                        android:id="@+id/settings_offline_maps"
+                        style="@style/AppTheme.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tool:text="Offline maps"/>
+
+                <TextView
+                        android:layout_below="@+id/settings_offline_maps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                tool:text="Download regions for using maps without internet"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <TextView
+                        style="@style/AppTheme.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tool:text="Sound"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <TextView
+                        style="@style/AppTheme.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tool:text="Map preferences"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <TextView
+                        style="@style/AppTheme.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tool:text="Connection preferences"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <TextView
+                        style="@style/AppTheme.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tool:text="Navigation preferences"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <TextView
+                        style="@style/AppTheme.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tool:text="Clear notification history"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <TextView
+                        style="@style/AppTheme.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tool:text="About app"/>
+
+            </RelativeLayout>
+
+            <TextView
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tool:text="Development version Alpha v0.0.1"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

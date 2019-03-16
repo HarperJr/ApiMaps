@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        style="@style/Widget.MaterialComponents.BottomSheet.Modal"
         tools:context=".presentation.fragment.notification.NotificationFragment">
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/notificationsRecycler"
+            android:id="@+id/notifications_recycler"
             android:layout_width="match_parent"
+            android:layout_above="@id/notification_add_btn"
             android:layout_height="match_parent"/>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.button.MaterialButton
+            android:id="@+id/notification_add_btn"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:text="@string/notification_add_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</RelativeLayout>

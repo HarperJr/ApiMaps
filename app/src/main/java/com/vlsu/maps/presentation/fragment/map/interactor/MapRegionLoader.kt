@@ -4,14 +4,17 @@ import android.content.Context
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.offline.*
+import com.vlsu.maps.data.database.repository.RegionRepository
 import com.vlsu.maps.domain.model.Region
+import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import org.json.JSONObject
 import timber.log.Timber
 import javax.inject.Inject
 
 class MapRegionLoader @Inject constructor(
-    private val context: Context
+    private val context: Context,
+    private val regionRepository: RegionRepository
 ) {
 
     private val offlineManager = OfflineManager.getInstance(context)
@@ -44,11 +47,17 @@ class MapRegionLoader @Inject constructor(
         })
     }
 
-    fun loadRegion(region: Region) {
-        val latlngBounds = LatLngBounds.from(region.north, region.east, region.south, region.west)
+    fun loadRegion(regionId: Long) {
+        loadRegion(regionRepository.find(regionId)!!)
+    }
+
+    fun downloadStatus(): Observable<Float> = downloadStatusSubject
+
+    private fun loadRegion(region: Region) {
+        val bounds = LatLngBounds.from(region.north, region.east, region.south, region.west)
         val definition = OfflineTilePyramidRegionDefinition(
             Style.MAPBOX_STREETS,
-            latlngBounds,
+            bounds,
             Constants.MIN_ZOOM,
             Constants.MAX_ZOOM,
             context.resources.displayMetrics.density

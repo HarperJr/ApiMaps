@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager
 import ru.terrakok.cicerone.Screen
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
+import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
 
 class MainNavigator constructor(
@@ -20,13 +21,20 @@ class MainNavigator constructor(
     override fun applyCommand(command: Command?) {
         when (command) {
             is Replace -> execReplace(command.screen)
+            is Forward -> execForward(command.screen)
             else -> super.applyCommand(command)
         }
     }
 
     private fun execReplace(screen: Screen) {
         val newScreen = Navigation.Screen.of(screen.screenKey)
-        replace(initFragment(currentScreen), initFragment(newScreen))
+        replace(fragment(currentScreen), fragment(newScreen))
+        currentScreen = newScreen
+    }
+
+    private fun execForward(screen: Screen) {
+        val newScreen = Navigation.Screen.of(screen.screenKey)
+        forward(fragment(newScreen))
         currentScreen = newScreen
     }
 
@@ -40,7 +48,14 @@ class MainNavigator constructor(
         }
     }
 
-    private fun initFragment(screen: Navigation.Screen): Fragment {
+    private fun forward(toAttach: Fragment) {
+        return with(fragmentManager.beginTransaction()) {
+            attach(toAttach)
+            commitNow()
+        }
+    }
+
+    private fun fragment(screen: Navigation.Screen): Fragment {
         val fragment = fragmentManager.findFragmentByTag(screen.key)
         return fragment ?: with(fragmentManager) {
             val newFragment = Navigation.Screen.getScreen(screen).fragment

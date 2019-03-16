@@ -4,7 +4,7 @@ import com.vlsu.maps.presentation.fragment.info.mvp.InfoPresenter
 import dagger.Subcomponent
 
 @Subcomponent
-interface InfoComponent {
+interface SettingsComponent {
 
     fun infoPresenter(): InfoPresenter
 }

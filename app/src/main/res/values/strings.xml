@@ -8,4 +8,5 @@
     <string name="selectionNotifications">SelectionNotifications</string>
     <string name="selectionMap">SelectionMap</string>
     <string name="dialog_region_selector_apply_button">Выбрать</string>
+    <string name="notification_add_btn">Add new notification</string>
 </resources>

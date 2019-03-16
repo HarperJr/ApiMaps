@@ -33,7 +33,7 @@ class NotificationFragment : MvpViewStateFragment<NotificationView, Notification
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(notificationsRecycler) {
+        with(notifications_recycler) {
             adapter = notificationsAdapter
         }
     }

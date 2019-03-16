@@ -10,15 +10,15 @@ import com.vlsu.maps.di.Dagger
 import com.vlsu.maps.presentation.fragment.info.mvp.InfoPresenter
 import com.vlsu.maps.presentation.fragment.info.mvp.InfoView
 
-class InfoFragment : MvpFragment<InfoView, InfoPresenter>(), InfoView {
+class SettingsFragment : MvpFragment<InfoView, InfoPresenter>(), InfoView {
 
-    private val component = Dagger.appComponent.infoComponent()
+    private val component = Dagger.appComponent.settingsComponent()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_info, container, false)
+        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun createPresenter(): InfoPresenter {
@@ -26,6 +26,6 @@ class InfoFragment : MvpFragment<InfoView, InfoPresenter>(), InfoView {
     }
 
     companion object {
-        fun newInstance() = InfoFragment()
+        fun newInstance() = SettingsFragment()
     }
 }
