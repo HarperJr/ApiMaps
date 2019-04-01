@@ -7,15 +7,17 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class LocationUpdatesInteractor @Inject constructor(context: Context) {
+class LocationUpdatesProvider @Inject constructor(context: Context) {
 
     private val updatesSubject = PublishSubject.create<Location>()
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     private val locationRequest = LocationRequest().apply {
-        interval = 900000
-        fastestInterval = 120000
+        interval = TimeUnit.SECONDS.toMillis(20)
+        maxWaitTime = TimeUnit.SECONDS.toMillis(60)
+        fastestInterval = TimeUnit.SECONDS.toMillis(10)
     }
 
     @Throws(SecurityException::class)

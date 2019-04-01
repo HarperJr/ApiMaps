@@ -1,18 +1,23 @@
 package com.vlsu.maps.presentation.fragment.map
 
-import com.google.android.gms.maps.model.LatLng
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
-import com.vlsu.maps.domain.interactor.location.LocationUpdatesInteractor
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.vlsu.maps.domain.interactor.location.LocationUpdatesProvider
 import com.vlsu.maps.domain.rx.AppSchedulerProvider
 import com.vlsu.maps.domain.rx.RegionChangedEvent
 import com.vlsu.maps.domain.rx.RxBus
+import com.vlsu.maps.navigation.FragmentRouter
+import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
+import com.vlsu.maps.presentation.fragment.routing.RoutingScreen
+import com.vlsu.maps.presentation.fragment.settings.SettingsScreen
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MapPresenter @Inject constructor(
-    private val locationUpdatesInteractor: LocationUpdatesInteractor,
+    private val locationUpdatesProvider: LocationUpdatesProvider,
+    private val router: FragmentRouter,
     private val rxBus: RxBus
 ) : MvpBasePresenter<MapView>() {
 
@@ -22,9 +27,9 @@ class MapPresenter @Inject constructor(
     private var originFocused = false
 
     override fun attachView(view: MapView) {
-        locationUpdatesInteractor.startUpdates()
+        locationUpdatesProvider.startUpdates()
 
-        locationUpdatesDisposable = locationUpdatesInteractor.updates()
+        locationUpdatesDisposable = locationUpdatesProvider.updates()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { location ->
@@ -32,7 +37,7 @@ class MapPresenter @Inject constructor(
             }
             .subscribe { location ->
                 if (originFocused) {
-
+                    view.setOriginLocation(location)
                 }
             }
         rxBusDisposable = rxBus.event()
@@ -45,7 +50,7 @@ class MapPresenter @Inject constructor(
     }
 
     override fun detachView() {
-        locationUpdatesInteractor.stopUpdates()
+        locationUpdatesProvider.stopUpdates()
 
         locationUpdatesDisposable.dispose()
         rxBusDisposable.dispose()
@@ -67,10 +72,26 @@ class MapPresenter @Inject constructor(
     }
 
     fun onLocationButtonClicked() {
-        originFocused = true
+        originFocused = !originFocused
     }
 
     private fun downloadRegion(regionId: Long) {
 
+    }
+
+    fun navigateToNotifications() {
+        router.replace(NotificationScreen())
+    }
+
+    fun navigateToSettings() {
+        router.replace(SettingsScreen())
+    }
+
+    fun navigateToRoute() {
+        router.replace(RoutingScreen())
+    }
+
+    fun onBackPressed() {
+        router.back()
     }
 }

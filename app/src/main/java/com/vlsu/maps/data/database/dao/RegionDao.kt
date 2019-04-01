@@ -1,9 +1,11 @@
 package com.vlsu.maps.data.database.dao
 
+import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
 import com.vlsu.maps.data.database.entity.RegionEntity
 import io.reactivex.Flowable
 
+@Dao
 interface RegionDao : BaseDao<RegionEntity> {
 
     @Query("SELECT * FROM Region")

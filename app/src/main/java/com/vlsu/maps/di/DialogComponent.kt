@@ -1,7 +1,6 @@
 package com.vlsu.maps.di
 
 import com.vlsu.maps.di.scope.DialogScope
-import com.vlsu.maps.di.subcomponent.dialog.RegionSelectorComponent
 import dagger.Component
 
 @DialogScope
@@ -11,5 +10,5 @@ import dagger.Component
     ]
 )
 interface DialogComponent {
-    fun regionSelectorComponent(): RegionSelectorComponent
+    
 }

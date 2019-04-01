@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menuSelectionMap"
-          android:icon="@drawable/ic_unknown"
-          android:title="@string/selectionMap"
-          app:showAsAction="ifRoom"/>
-
     <item android:id="@+id/menuSelectionNotifications"
           android:icon="@drawable/ic_unknown"
           android:title="@string/selectionNotifications"
           app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/menuSelectionInfo"
+    <item android:id="@+id/menuSelectionSettings"
           android:icon="@drawable/ic_unknown"
-          android:title="@string/selectionDetails"
+          android:title="@string/sectionSettings"
+          app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/menuSelectionRoute"
+          android:icon="@drawable/ic_unknown"
+          android:title="@string/sectionRoute"
           app:showAsAction="ifRoom"/>
 </menu>

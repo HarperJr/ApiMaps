@@ -6,12 +6,14 @@ import com.vlsu.maps.BuildConfig
 import com.vlsu.maps.data.database.dao.NotificationDao
 import com.vlsu.maps.data.database.dao.RegionDao
 import com.vlsu.maps.data.database.entity.NotificationEntity
+import com.vlsu.maps.data.database.entity.RegionEntity
 
 @Database(
     version = BuildConfig.DATABASE_VERSION,
     exportSchema = false,
     entities = [
-        NotificationEntity::class
+        NotificationEntity::class,
+        RegionEntity::class
     ]
 )
 abstract class Database : RoomDatabase() {

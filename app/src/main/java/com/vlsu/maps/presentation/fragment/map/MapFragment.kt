@@ -2,24 +2,33 @@ package com.vlsu.maps.presentation.fragment.map
 
 
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
+import com.vlsu.maps.navigation.MapNavigator
+import com.vlsu.maps.presentation.OnBackPressable
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
 class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
-    MapView {
+    MapView, BottomNavigationView.OnNavigationItemSelectedListener, OnBackPressable {
 
     private val component = Dagger.appComponent.mapComponent()
     private val mapDelegate by lazy {
         component.mapDelegate()
     }
+    private val navigator by lazy {
+        MapNavigator(this, childFragmentManager, R.id.bottomContainer)
+    }
     private lateinit var mapView: com.mapbox.mapboxsdk.maps.MapView
+
+    private val fragmentRouter = component.fragmentRouter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
@@ -38,16 +47,42 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         zoomOutButton.setOnClickListener { presenter.onZoomOutButtonClicked() }
         locationButton.setOnClickListener { presenter.onLocationButtonClicked() }
 
+        bottomNavBar.setOnNavigationItemSelectedListener(this)
+
         mapView.getMapAsync(mapDelegate)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menuSelectionNotifications -> {
+                presenter.navigateToNotifications()
+                true
+            }
+            R.id.menuSelectionSettings -> {
+                presenter.navigateToSettings()
+                true
+            }
+            R.id.menuSelectionRoute -> {
+                presenter.navigateToRoute()
+                true
+            }
+            else -> false
+        }
+    }
+
+    override fun onBackPressed() {
+        presenter.onBackPressed()
     }
 
     override fun onResume() {
         super.onResume()
+        fragmentRouter.setNavigator(navigator)
         mapView.onResume()
     }
 
     override fun onPause() {
         super.onPause()
+        fragmentRouter.removeNavigator()
         mapView.onPause()
     }
 
@@ -74,7 +109,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
     }
 
     override fun setOriginLocation(location: LatLng) {
-
+        mapDelegate.setOriginLocation(location)
     }
 
     override fun createViewState(): MapViewState {

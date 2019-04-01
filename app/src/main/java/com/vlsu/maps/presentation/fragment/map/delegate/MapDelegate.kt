@@ -2,6 +2,7 @@ package com.vlsu.maps.presentation.fragment.map.delegate
 
 import android.content.Context
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
@@ -20,8 +21,8 @@ class MapDelegate @Inject constructor(
         if (mapboxMap.style == null) {
             mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
                 this.style = style
-                with (mapboxMap) {
-                    with (uiSettings) {
+                with(mapboxMap) {
+                    with(uiSettings) {
                         isCompassEnabled = true
                         isAttributionEnabled = false
                         isLogoEnabled = false
@@ -51,5 +52,9 @@ class MapDelegate @Inject constructor(
 
     fun addMarker() {
 
+    }
+
+    fun setOriginLocation(location: LatLng) {
+        map.moveCamera(CameraUpdateFactory.newLatLng(location))
     }
 }
