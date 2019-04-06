@@ -91,7 +91,7 @@ class MapPresenter @Inject constructor(
         router.replace(RoutingScreen())
     }
 
-    fun onBackPressed() {
-        router.back()
+    fun onBackPressed(): Boolean {
+        return router.back()
     }
 }

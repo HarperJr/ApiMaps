@@ -7,10 +7,9 @@
     <string name="selectionDetails">Детали</string>
     <string name="selectionNotifications">Уведомления</string>
     <string name="selectionMap">Карта</string>
-    <string name="dialog_region_selector_apply_button">Выбрать</string>
-    <string name="notification_add_btn">Добавить уведомление</string>
     <string name="sectionSettings">Настройки</string>
     <string name="sectionRoute">Маршруты</string>
+
     <string name="settings_app_version">Development version Alpha v0.0.1</string>
     <string name="settings_about_app">О приложении</string>
     <string name="settings_notification_history">Очистить историю уведомлений</string>
@@ -18,9 +17,18 @@
     <string name="settings_offline_connection_prefs">Настройки соединений</string>
     <string name="settings_offline_app_prefs">Настройки карты</string>
     <string name="settings_offline_sound">Звук</string>
-    <string name="settings_offline_maps_description">Качайте оффлайн карты, чтобы получить доступ к возможностям
-        приложения без интернета
-    </string>
+    <string name="settings_offline_maps_description">Качайте оффлайн карты, чтобы получить доступ к возможностям приложения без интернета</string>
     <string name="settings_offline_maps">Оффлайн карты</string>
+
     <string name="notification_title">Уведомления</string>
+    <string name="notification_add_btn">Добавить уведомление</string>
+
+
+    <string name="intro_about">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
+    <string name="intro_settings">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
+    <string name="intro_offline">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
+    <string name="intro_routes">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
+    <string name="intro_continue_btn">Продолжить</string>
+
+    <string name="dialog_region_selector_apply_button">Выбрать</string>
 </resources>

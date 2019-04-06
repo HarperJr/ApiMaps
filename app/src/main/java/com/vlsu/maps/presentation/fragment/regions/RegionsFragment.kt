@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.region
+package com.vlsu.maps.presentation.fragment.regions
 
 
 import android.os.Bundle
@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vlsu.maps.R
+import com.vlsu.maps.presentation.fragment.regions.adapter.RegionItem
 
 
-class RegionFragment : Fragment() {
+class RegionsFragment : Fragment(), RegionsView {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,7 +20,11 @@ class RegionFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_region, container, false)
     }
 
+    override fun setRegions(regions: List<RegionItem>) {
+
+    }
+
     companion object {
-        fun newInstance() = RegionFragment()
+        fun newInstance() = RegionsFragment()
     }
 }

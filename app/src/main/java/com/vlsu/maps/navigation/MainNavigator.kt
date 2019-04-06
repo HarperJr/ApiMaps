@@ -19,9 +19,8 @@ class MainNavigator constructor(
 ) : SupportAppNavigator(activity, fragmentManager, containerId) {
 
     private var currentScreen = Navigation.DEFAULT_SCREEN
-    private val backPressableStack = mutableListOf<OnBackPressable>()
 
-    override fun applyCommand(command: Command?) {
+    override fun applyCommand(command: Command) {
         when (command) {
             is Replace -> execReplace(command.screen)
             is Forward -> execForward(command.screen)
@@ -43,6 +42,12 @@ class MainNavigator constructor(
     }
 
     private fun execBack() {
+        val attachedScreen = fragment(currentScreen)
+        if (attachedScreen is OnBackPressable) {
+            if (attachedScreen.onBackPressed()) {
+                return
+            }
+        }
         super.applyCommand(Back())
     }
 

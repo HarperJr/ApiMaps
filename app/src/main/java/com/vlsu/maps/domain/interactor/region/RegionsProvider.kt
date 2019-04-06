@@ -5,19 +5,19 @@ import com.vlsu.maps.data.database.repository.RegionRepository
 import com.vlsu.maps.data.database.transaction.DbTransaction
 import com.vlsu.maps.domain.interactor.AssetManager
 import com.vlsu.maps.domain.model.Region
-import com.vlsu.maps.domain.rx.AppSchedulerProvider
 import com.vlsu.maps.presentation.fragment.map.interactor.Constants
+import com.vlsu.maps.presentation.fragment.regions.adapter.RegionItem
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class RegionInteractor @Inject constructor(
+class RegionsProvider @Inject constructor(
     private val assetManager: AssetManager,
     private val dbTransaction: DbTransaction,
     private val regionRepository: RegionRepository,
     private val gson: Gson
 ) {
-    fun loadRegions(): Completable {
+    private fun loadRegions(): Completable {
         return Single
             .fromCallable {
                 assetManager.getFileContent(Constants.REGIONS_FILE_NAME)
@@ -32,17 +32,27 @@ class RegionInteractor @Inject constructor(
             }
     }
 
-    fun regions(): Single<List<Region>> {
-        return Single
-            .fromCallable {
-                regionRepository.getByOrder()
-            }
-            .observeOn(AppSchedulerProvider.db())
+    fun regions(): Single<List<RegionItem>> {
+        return loadRegions()
+            .andThen(
+                Single.fromCallable { regionRepository.getByOrder() }
+            )
+            .map { mapToItems(it) }
     }
 
     fun findRegionByName(name: String): Single<Region> {
         return Single.fromCallable {
             regionRepository.findByName(name)
+        }
+    }
+
+    private fun mapToItems(regions: List<Region>): List<RegionItem> {
+        return regions.map {
+            RegionItem(
+                id = it.id,
+                name = it.name,
+                order = it.order
+            )
         }
     }
 

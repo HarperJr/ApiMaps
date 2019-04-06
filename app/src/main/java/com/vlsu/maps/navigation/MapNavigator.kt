@@ -11,7 +11,6 @@ import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
 
 class MapNavigator constructor(
-    private val fragment: Fragment,
     private val fragmentManager: FragmentManager,
     @IdRes private val containerId: Int
 ) : Navigator {
@@ -26,30 +25,29 @@ class MapNavigator constructor(
 
     private fun applyCommand(command: Command) {
         when (command) {
-            is Forward -> applyForward(command.screen)
-            is Replace -> applyReplace(command.screen)
-            is Back -> applyBack()
+            is Forward -> execForward(command.screen)
+            is Replace -> execReplace(command.screen)
+            is Back -> execBack()
         }
     }
 
-    private fun applyForward(screen: Screen) {
+    private fun execForward(screen: Screen) {
         val newScreen = MapNavigation.key(screen.screenKey)
         forward(fragment(newScreen))
         currentScreen = newScreen
     }
 
-    private fun applyReplace(screen: Screen) {
+    private fun execReplace(screen: Screen) {
         val newScreen = MapNavigation.key(screen.screenKey)
         replace(fragment(currentScreen), fragment(newScreen))
         currentScreen = newScreen
     }
 
-    private fun applyBack() {
-        val currentFragment = fragment(currentScreen)
-        with(fragmentManager.beginTransaction()) {
-            detach(currentFragment)
-            commitNow()
-        }
+    private fun execBack() {
+        val attachedFragment = fragment(currentScreen)
+        fragmentManager.beginTransaction()
+            .detach(attachedFragment)
+            .commitNow()
     }
 
     private fun forward(newFragment: Fragment) {

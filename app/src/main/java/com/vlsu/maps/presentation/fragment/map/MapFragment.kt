@@ -24,7 +24,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         component.mapDelegate()
     }
     private val navigator by lazy {
-        MapNavigator(this, childFragmentManager, R.id.bottomContainer)
+        MapNavigator(childFragmentManager, R.id.bottomContainer)
     }
     private lateinit var mapView: com.mapbox.mapboxsdk.maps.MapView
 
@@ -70,8 +70,8 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         }
     }
 
-    override fun onBackPressed() {
-        presenter.onBackPressed()
+    override fun onBackPressed(): Boolean {
+        return presenter.onBackPressed()
     }
 
     override fun onResume() {

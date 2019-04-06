@@ -1,12 +1,14 @@
 package com.vlsu.maps.navigation
 
+import com.vlsu.maps.presentation.fragment.intro.IntroScreen
 import com.vlsu.maps.presentation.fragment.map.MapScreen
-import com.vlsu.maps.presentation.fragment.region.RegionScreen
+import com.vlsu.maps.presentation.fragment.regions.RegionsScreen
 
 class Navigation {
     enum class Screen(val key: String) {
+        INTRO_SCREEN("INTRO_SCREEN"),
         MAP_SCREEN("MAP_SCREEN"),
-        REGION_SCREEN("REGION_SCREEN")
+        REGIONS_SCREEN("REGIONS_SCREEN")
     }
 
     companion object {
@@ -16,7 +18,8 @@ class Navigation {
 
         fun screen(screen: Screen) = when (screen) {
             Screen.MAP_SCREEN -> MapScreen()
-            Screen.REGION_SCREEN -> RegionScreen()
+            Screen.REGIONS_SCREEN -> RegionsScreen()
+            Screen.INTRO_SCREEN -> IntroScreen()
         }
     }
 }

@@ -6,10 +6,7 @@ import com.vlsu.maps.di.module.AppModule
 import com.vlsu.maps.di.module.NavigationModule
 import com.vlsu.maps.di.module.NetworkModule
 import com.vlsu.maps.di.scope.AppScope
-import com.vlsu.maps.di.subcomponent.app.MainComponent
-import com.vlsu.maps.di.subcomponent.app.MapComponent
-import com.vlsu.maps.di.subcomponent.app.NotificationComponent
-import com.vlsu.maps.di.subcomponent.app.SettingsComponent
+import com.vlsu.maps.di.subcomponent.app.*
 import dagger.Component
 
 @AppScope
@@ -26,6 +23,8 @@ import dagger.Component
 interface AppComponent {
 
     fun sharedPreferences(): SharedPreferences
+
+    fun introComponent(): IntroComponent
 
     fun mainComponent(): MainComponent
 

@@ -7,10 +7,15 @@ import ru.terrakok.cicerone.commands.Back
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
+import java.util.*
 
+/**
+ * Would be better if i migrate stack logic into navigator
+ */
 class FragmentRouter : BaseRouter() {
 
     private var navigator: Navigator? = null
+    private var localStack = LinkedList<Screen>()
 
     fun setNavigator(navigator: Navigator) {
         this.navigator = navigator
@@ -22,17 +27,28 @@ class FragmentRouter : BaseRouter() {
 
     fun navigateTo(screen: Screen) {
         executeCommands(Forward(screen))
+        localStack.add(screen)
     }
 
     fun replace(screen: Screen) {
         executeCommands(Replace(screen))
+        if (localStack.size > 0) {
+            localStack.removeLast()
+        }
+        localStack.add(screen)
     }
 
-    fun back() {
-        executeCommands(Back())
+    fun back(): Boolean {
+        return if (localStack.size > 0) {
+            localStack.removeLast()
+            executeCommands(Back())
+            true
+        } else {
+            false
+        }
     }
 
-    override fun executeCommands(vararg commands: Command?) {
+    override fun executeCommands(vararg commands: Command) {
         navigator?.applyCommands(commands)
     }
 }
