@@ -26,6 +26,7 @@ class RegionsProvider @Inject constructor(
             .flatMapCompletable {
                 Completable.fromAction {
                     dbTransaction.runInTransaction {
+                        regionRepository.dropRegions()
                         regionRepository.insert(it.regions)
                     }
                 }
@@ -50,8 +51,7 @@ class RegionsProvider @Inject constructor(
         return regions.map {
             RegionItem(
                 id = it.id,
-                name = it.name,
-                order = it.order
+                name = it.name
             )
         }
     }

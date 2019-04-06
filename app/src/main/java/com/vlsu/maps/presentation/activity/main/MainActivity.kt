@@ -6,7 +6,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
-import com.vlsu.maps.navigation.MainNavigator
+import com.vlsu.maps.navigation.AppNavigator
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import ru.terrakok.cicerone.NavigatorHolder
@@ -21,7 +21,7 @@ class MainActivity : MvpActivity<MainView, MainPresenter>(),
     lateinit var navigationHolder: NavigatorHolder
 
     private val rxPermissions by lazy { RxPermissions(this) }
-    private val navigator by lazy { MainNavigator(this, supportFragmentManager, R.id.mainContainer) }
+    private val navigator by lazy { AppNavigator(this, R.id.mainContainer) }
 
     private var disposable = CompositeDisposable()
 

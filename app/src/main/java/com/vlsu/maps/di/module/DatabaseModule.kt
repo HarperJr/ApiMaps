@@ -13,7 +13,8 @@ import dagger.Provides
 @Module(
     includes = [
         MapperModule::class,
-        DaoModule::class
+        DaoModule::class,
+        RepositoryModule::class
     ]
 )
 class DatabaseModule(private val context: Context) {

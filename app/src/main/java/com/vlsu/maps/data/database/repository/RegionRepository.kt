@@ -10,4 +10,6 @@ interface RegionRepository : Repository<Region, Long> {
     fun getByOrder(): List<Region>
 
     fun findByName(name: String): Region
+
+    fun dropRegions()
 }

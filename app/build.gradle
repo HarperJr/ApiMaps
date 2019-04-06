@@ -16,7 +16,7 @@ android {
     buildTypes {
         debug {
             buildConfigField('String', 'DATABASE_NAME', '"local.db"')
-            buildConfigField('int', 'DATABASE_VERSION', '0')
+            buildConfigField('int', 'DATABASE_VERSION', '1')
             buildConfigField('String', 'MAPBOX_TOKEN', '"pk.eyJ1IjoiaGFycGVyanIiLCJhIjoiY2pzaG1kNjV1MDkzNzQzbGk0NDMwendrMSJ9.fPUWoaQetd1JgyFHaIXTGw"')
         }
         release {

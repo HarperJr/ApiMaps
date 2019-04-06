@@ -2,7 +2,6 @@ package com.vlsu.maps.presentation.fragment.settings
 
 import android.support.v4.app.Fragment
 import com.vlsu.maps.navigation.MapNavigation
-import com.vlsu.maps.navigation.Navigation
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class SettingsScreen : SupportAppScreen() {

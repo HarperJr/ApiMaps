@@ -14,11 +14,9 @@ import javax.inject.Singleton
 class NetworkModule {
 
     @Provides
-    @Singleton
     fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
-    @Singleton
     fun provideRetrofit(clientSettings: ClientSettings, gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))

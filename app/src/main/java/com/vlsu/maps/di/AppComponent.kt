@@ -34,5 +34,7 @@ interface AppComponent {
 
     fun settingsComponent(): SettingsComponent
 
+    fun offlineMapSettingsComponent(): OfflineMapSettingsComponent
+
     fun handler(): Handler
 }

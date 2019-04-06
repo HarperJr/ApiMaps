@@ -1,6 +1,6 @@
-[
-  {
-    "vladimir": {
+{
+  "regions": [
+    {
       "id": 0,
       "code": "vladimir",
       "name": "Владимир",
@@ -10,7 +10,7 @@
       "east": 56.111151,
       "west": 40.313821
     },
-    "moscow": {
+    {
       "id": 1,
       "code": "vladimir",
       "name": "Москва",
@@ -20,7 +20,7 @@
       "east": 1,
       "west": 1
     },
-    "kineshma": {
+    {
       "id": 2,
       "code": "vladimir",
       "name": "Кинешма",
@@ -30,7 +30,7 @@
       "east": 1,
       "west": 1
     },
-    "ivanovo": {
+    {
       "id": 3,
       "code": "vladimir",
       "name": "Иваново",
@@ -40,5 +40,5 @@
       "east": 1,
       "west": 1
     }
-  }
-]
+  ]
+}

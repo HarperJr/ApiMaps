@@ -16,4 +16,7 @@ interface RegionDao : BaseDao<RegionEntity> {
 
     @Query("SELECT * FROM Region WHERE name =  :name LIMIT 1")
     fun findByName(name: String): RegionEntity
+
+    @Query("DELETE FROM Region")
+    fun dropRegions()
 }

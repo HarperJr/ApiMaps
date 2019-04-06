@@ -27,4 +27,8 @@ class RegionRepositoryImpl @Inject constructor(
     override fun findByName(name: String): Region {
         return regionMapper.entityToModel(regionDao.findByName(name))
     }
+
+    override fun dropRegions() {
+        regionDao.dropRegions()
+    }
 }
