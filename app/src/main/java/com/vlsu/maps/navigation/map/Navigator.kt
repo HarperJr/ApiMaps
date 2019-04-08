@@ -1,4 +1,4 @@
-package com.vlsu.maps.navigation
+package com.vlsu.maps.navigation.map
 
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
@@ -10,12 +10,12 @@ import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
 
-class MapNavigator constructor(
+class Navigator constructor(
     private val fragmentManager: FragmentManager,
     @IdRes private val containerId: Int
 ) : Navigator {
 
-    private var currentScreen = MapNavigation.DEFAULT_SCREEN
+    private var currentScreen = Navigation.DEFAULT_SCREEN
 
     override fun applyCommands(commands: Array<out Command>) {
         commands.forEach { command ->
@@ -32,13 +32,13 @@ class MapNavigator constructor(
     }
 
     private fun execForward(screen: Screen) {
-        val newScreen = MapNavigation.key(screen.screenKey)
+        val newScreen = Navigation.key(screen.screenKey)
         forward(fragment(newScreen))
         currentScreen = newScreen
     }
 
     private fun execReplace(screen: Screen) {
-        val newScreen = MapNavigation.key(screen.screenKey)
+        val newScreen = Navigation.key(screen.screenKey)
         replace(fragment(currentScreen), fragment(newScreen))
         currentScreen = newScreen
     }
@@ -67,10 +67,10 @@ class MapNavigator constructor(
         }
     }
 
-    private fun fragment(screen: MapNavigation.Screen): Fragment {
+    private fun fragment(screen: Navigation.Screen): Fragment {
         val fragment = fragmentManager.findFragmentByTag(screen.key)
         return fragment ?: with(fragmentManager) {
-            val newFragment = MapNavigation.screen(screen).fragment
+            val newFragment = Navigation.screen(screen).fragment
             with(beginTransaction()) {
                 add(containerId, newFragment, screen.key)
                 detach(newFragment)

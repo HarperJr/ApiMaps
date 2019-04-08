@@ -5,6 +5,8 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 
 interface MapView : MvpView {
 
+    fun setOriginBtnActive(active: Boolean)
+
     fun zoomIn()
 
     fun zoomOut()
@@ -12,4 +14,6 @@ interface MapView : MvpView {
     fun showLayersDialog()
 
     fun setOriginLocation(location: LatLng)
+
+    fun setBottomSheetExpanded(expanded: Boolean)
 }

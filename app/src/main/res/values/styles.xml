@@ -16,7 +16,6 @@
 
     <style name="AppTheme.FloatingActionButton.White" parent="Widget.Design.FloatingActionButton">
         <item name="elevation">4dp</item>
-        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme.Button.White" parent="Widget.MaterialComponents.Button">

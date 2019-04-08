@@ -1,6 +1,6 @@
 package com.vlsu.maps.di.subcomponent.app
 
-import com.vlsu.maps.navigation.FragmentRouter
+import com.vlsu.maps.navigation.map.MapScreenRouter
 import com.vlsu.maps.presentation.fragment.map.delegate.MapDelegate
 import com.vlsu.maps.presentation.fragment.map.MapPresenter
 import com.vlsu.maps.presentation.fragment.map.MapViewState
@@ -15,5 +15,5 @@ interface MapComponent {
 
     fun mapDelegate(): MapDelegate
 
-    fun fragmentRouter(): FragmentRouter
+    fun fragmentRouter(): MapScreenRouter
 }

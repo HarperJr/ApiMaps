@@ -1,7 +1,7 @@
 package com.vlsu.maps.di.module
 
 import com.vlsu.maps.di.scope.AppScope
-import com.vlsu.maps.navigation.FragmentRouter
+import com.vlsu.maps.navigation.map.MapScreenRouter
 import dagger.Module
 import dagger.Provides
 import ru.terrakok.cicerone.Cicerone
@@ -22,7 +22,7 @@ class NavigationModule {
 
     @Provides
     @AppScope
-    fun provideFragmentRouter() = FragmentRouter()
+    fun provideMapScreenRouter(appRouter: Router) = MapScreenRouter(appRouter)
 
     @Provides
     @AppScope

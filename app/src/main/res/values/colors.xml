@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimaryDark">#B6B6B6</color>
     <color name="colorAccent">#FFFFFF</color>
     <!--Other-->
     <color name="transparent">#0000</color>
     <color name="colorGrey">#464646</color>
+    <color name="semi_transparent">#80FFFFFF</color>
 </resources>

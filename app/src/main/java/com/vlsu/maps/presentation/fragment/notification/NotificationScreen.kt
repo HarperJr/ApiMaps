@@ -1,13 +1,13 @@
 package com.vlsu.maps.presentation.fragment.notification
 
 import android.support.v4.app.Fragment
-import com.vlsu.maps.navigation.MapNavigation
+import com.vlsu.maps.navigation.map.Navigation
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class NotificationScreen : SupportAppScreen() {
 
     override fun getScreenKey(): String {
-        return MapNavigation.Screen.NOTIFICATION_SCREEN.key
+        return Navigation.Screen.NOTIFICATION_SCREEN.key
     }
 
     override fun getFragment(): Fragment {

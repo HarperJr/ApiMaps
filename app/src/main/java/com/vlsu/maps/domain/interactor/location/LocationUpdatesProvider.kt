@@ -19,14 +19,26 @@ class LocationUpdatesProvider @Inject constructor(context: Context) {
         maxWaitTime = TimeUnit.SECONDS.toMillis(60)
         fastestInterval = TimeUnit.SECONDS.toMillis(10)
     }
+    private var requestingUpdates = false
 
     @Throws(SecurityException::class)
     fun startUpdates() {
+        if (requestingUpdates) return
+        requestingUpdates = true
+
         fusedLocationClient
             .requestLocationUpdates(locationRequest, locationCallback, null)
+        fusedLocationClient.lastLocation
+            .addOnCompleteListener {
+                val lastLocation = it.result
+                if (lastLocation != null) updatesSubject.onNext(lastLocation)
+            }
     }
 
     fun stopUpdates() {
+        if (!requestingUpdates) return
+        requestingUpdates = false
+
         fusedLocationClient
             .removeLocationUpdates(locationCallback)
     }

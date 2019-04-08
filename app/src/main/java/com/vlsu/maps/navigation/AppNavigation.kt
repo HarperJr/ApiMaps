@@ -12,9 +12,8 @@ class AppNavigation {
     }
 
     companion object {
-        val DEFAULT_SCREEN = Screen.MAP_SCREEN
-
-        fun key(key: String? = null): Screen = Screen.values().firstOrNull { it.key == key } ?: DEFAULT_SCREEN
+        fun key(key: String? = null): Screen = Screen.values().firstOrNull { it.key == key } ?:
+                throw IllegalArgumentException("Invalid screen key $key")
 
         fun screen(screen: Screen) = when (screen) {
             Screen.MAP_SCREEN -> MapScreen()

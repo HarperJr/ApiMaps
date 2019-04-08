@@ -64,7 +64,7 @@ class IntroFragment : Fragment() {
     }
 
     private fun onContinueBtnClicked() {
-        router.replaceScreen(MapScreen())
+        router.newRootScreen(MapScreen())
     }
 
     private val onPageChangeListener = object : ViewPager.OnPageChangeListener {

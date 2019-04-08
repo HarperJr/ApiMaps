@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class MapViewState @Inject constructor() : ViewState<MapView> {
 
-    override fun apply(view: MapView?, retained: Boolean) {
+    override fun apply(view: MapView, retained: Boolean) {
 
     }
 }

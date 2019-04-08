@@ -1,6 +1,7 @@
 package com.vlsu.maps.presentation.fragment.map.delegate
 
 import android.content.Context
+import com.mapbox.android.gestures.MoveGestureDetector
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -13,11 +14,15 @@ class MapDelegate @Inject constructor(
     private val context: Context
 ) : OnMapReadyCallback {
 
-    private lateinit var map: MapboxMap
-    private lateinit var style: Style
+    var onMapReadyListener: (() -> Unit)? = null
+    var onMapMoveListener: (() -> Unit)? = null
+
+    private var map: MapboxMap? = null
+    private var style: Style? = null
 
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.map = mapboxMap
+        mapboxMap.addOnMoveListener(onMoveListener)
         if (mapboxMap.style == null) {
             mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
                 this.style = style
@@ -32,18 +37,19 @@ class MapDelegate @Inject constructor(
                 }
             }
         }
+        onMapReadyListener?.invoke()
     }
 
     fun zoomIn() {
-        map.animateCamera(CameraUpdateFactory.zoomIn())
+        map?.animateCamera(CameraUpdateFactory.zoomIn())
     }
 
     fun zoomOut() {
-        map.animateCamera(CameraUpdateFactory.zoomOut())
+        map?.animateCamera(CameraUpdateFactory.zoomOut())
     }
 
     fun zoom(zoom: Double) {
-        map.animateCamera(CameraUpdateFactory.zoomBy(zoom))
+        map?.animateCamera(CameraUpdateFactory.zoomBy(zoom))
     }
 
     fun setMapCenter() {
@@ -55,6 +61,28 @@ class MapDelegate @Inject constructor(
     }
 
     fun setOriginLocation(location: LatLng) {
-        map.moveCamera(CameraUpdateFactory.newLatLng(location))
+        map?.moveCamera(CameraUpdateFactory.newLatLng(location))
+    }
+
+    fun destroy() {
+        map?.removeOnMoveListener(onMoveListener)
+
+        onMapReadyListener = null
+        onMapMoveListener = null
+        map = null
+    }
+
+    private val onMoveListener = object : MapboxMap.OnMoveListener {
+        override fun onMoveBegin(detector: MoveGestureDetector) {
+
+        }
+
+        override fun onMove(detector: MoveGestureDetector) {
+            onMapMoveListener?.invoke()
+        }
+
+        override fun onMoveEnd(detector: MoveGestureDetector) {
+
+        }
     }
 }

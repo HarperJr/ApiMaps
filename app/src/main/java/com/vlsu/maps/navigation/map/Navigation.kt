@@ -1,10 +1,10 @@
-package com.vlsu.maps.navigation
+package com.vlsu.maps.navigation.map
 
 import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
 import com.vlsu.maps.presentation.fragment.routing.RoutingScreen
 import com.vlsu.maps.presentation.fragment.settings.SettingsScreen
 
-class MapNavigation {
+class Navigation {
 
     enum class Screen(val key: String) {
         SETTINGS_SCREEN("SETTINGS_SCREEN"),
