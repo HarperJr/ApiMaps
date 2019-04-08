@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.regions
+package com.vlsu.maps.presentation.fragment.offlinemap
 
 
 import android.os.Bundle
@@ -10,9 +10,9 @@ import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
-import com.vlsu.maps.presentation.fragment.regions.adapter.RegionItem
-import com.vlsu.maps.presentation.fragment.regions.adapter.RegionsDelegate
-import kotlinx.android.synthetic.main.fragment_region.*
+import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionItem
+import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionsDelegate
+import kotlinx.android.synthetic.main.fragment_offline_map_settings.*
 
 
 class OfflineMapSettingsFragment :
@@ -30,12 +30,12 @@ class OfflineMapSettingsFragment :
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_region, container, false)
+        return inflater.inflate(R.layout.fragment_offline_map_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        region_recycler.adapter = regionsAdapter
+        offline_map_recycler.adapter = regionsAdapter
     }
 
     override fun setRegions(regions: List<RegionItem>) {

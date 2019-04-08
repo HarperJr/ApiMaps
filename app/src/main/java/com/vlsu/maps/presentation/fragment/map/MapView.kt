@@ -15,5 +15,9 @@ interface MapView : MvpView {
 
     fun setOriginLocation(location: LatLng)
 
+    fun setProgress(progress: Int)
+
+    fun setProgressVisible(visivle: Boolean)
+
     fun setBottomSheetExpanded(expanded: Boolean)
 }

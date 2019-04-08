@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentTransaction
 import com.vlsu.maps.R
-import com.vlsu.maps.presentation.fragment.regions.OfflineMapSettingsFragment
+import com.vlsu.maps.presentation.fragment.offlinemap.OfflineMapSettingsFragment
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 

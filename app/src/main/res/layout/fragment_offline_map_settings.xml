@@ -5,13 +5,19 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.fragment.regions.OfflineMapSettingsFragment"
+        tools:context=".presentation.fragment.offlinemap.OfflineMapSettingsFragment"
         android:background="@color/colorPrimary">
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/region_recycler"
+            android:id="@+id/offline_map_recycler"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+    <android.support.design.button.MaterialButton
+            style="@style/TextAppearance.MaterialComponents.Button"
+            android:id="@+id/offline_map_accept_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 </RelativeLayout>

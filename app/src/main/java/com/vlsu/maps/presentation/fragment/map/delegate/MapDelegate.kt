@@ -1,9 +1,13 @@
 package com.vlsu.maps.presentation.fragment.map.delegate
 
+import android.annotation.SuppressLint
 import android.content.Context
 import com.mapbox.android.gestures.MoveGestureDetector
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.location.LocationComponent
+import com.mapbox.mapboxsdk.location.LocationComponentOptions
+import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
@@ -20,13 +24,19 @@ class MapDelegate @Inject constructor(
     private var map: MapboxMap? = null
     private var style: Style? = null
 
+    private var locationComponent: LocationComponent? = null
+
+    @SuppressLint("MissingPermission")
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.map = mapboxMap
         mapboxMap.addOnMoveListener(onMoveListener)
         if (mapboxMap.style == null) {
             mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
                 this.style = style
+                locationComponent = mapboxMap.locationComponent
                 with(mapboxMap) {
+                    locationComponent.activateLocationComponent(context, style)
+                    locationComponent.isLocationComponentEnabled = true
                     with(uiSettings) {
                         isCompassEnabled = true
                         isAttributionEnabled = false
@@ -69,6 +79,7 @@ class MapDelegate @Inject constructor(
 
         onMapReadyListener = null
         onMapMoveListener = null
+        locationComponent = null
         map = null
     }
 

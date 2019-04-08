@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.regions.adapter
+package com.vlsu.maps.presentation.fragment.offlinemap.adapter
 
 data class RegionItem(
     var id: Long,

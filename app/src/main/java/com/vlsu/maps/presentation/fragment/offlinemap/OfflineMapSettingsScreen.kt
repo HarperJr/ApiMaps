@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.regions
+package com.vlsu.maps.presentation.fragment.offlinemap
 
 import android.support.v4.app.Fragment
 import com.vlsu.maps.navigation.AppNavigation

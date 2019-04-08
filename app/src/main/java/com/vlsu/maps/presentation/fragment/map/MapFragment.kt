@@ -159,6 +159,14 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         else BottomSheetBehavior.STATE_HIDDEN
     }
 
+    override fun setProgress(progress: Int) {
+        map_progress_bar.progress = progress
+    }
+
+    override fun setProgressVisible(visivle: Boolean) {
+        map_progress_bar.visibility = if (visivle) View.VISIBLE else View.INVISIBLE
+    }
+
     private fun requestPermissionsRx() {
         permissionsDisposable = rxPermissions
             .request(

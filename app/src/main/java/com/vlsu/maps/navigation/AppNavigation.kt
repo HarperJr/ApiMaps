@@ -2,7 +2,7 @@ package com.vlsu.maps.navigation
 
 import com.vlsu.maps.presentation.fragment.intro.IntroScreen
 import com.vlsu.maps.presentation.fragment.map.MapScreen
-import com.vlsu.maps.presentation.fragment.regions.OfflineMapSettingsScreen
+import com.vlsu.maps.presentation.fragment.offlinemap.OfflineMapSettingsScreen
 
 class AppNavigation {
     enum class Screen(val key: String) {

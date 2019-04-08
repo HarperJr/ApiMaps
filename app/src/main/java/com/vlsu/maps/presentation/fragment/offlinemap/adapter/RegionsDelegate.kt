@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.regions.adapter
+package com.vlsu.maps.presentation.fragment.offlinemap.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -26,7 +26,9 @@ class RegionsDelegate(
         val item = items[position]
         with(holder.itemView) {
             region_view_name.text = item.name
-            setOnClickListener { onItemClickListener.invoke(item.id) }
+            setOnClickListener {
+                onItemClickListener.invoke(item.id)
+            }
         }
     }
 

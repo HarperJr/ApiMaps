@@ -6,5 +6,6 @@
     <!--Other-->
     <color name="transparent">#0000</color>
     <color name="colorGrey">#464646</color>
-    <color name="semi_transparent">#80FFFFFF</color>
+    <color name="semiTransparent">#80FFFFFF</color>
+    <color name="colorDiamond">#80A4F4FF</color>
 </resources>

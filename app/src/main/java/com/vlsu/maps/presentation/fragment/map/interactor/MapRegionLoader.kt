@@ -18,7 +18,7 @@ class MapRegionLoader @Inject constructor(
 ) {
 
     private val offlineManager = OfflineManager.getInstance(context)
-    private val downloadStatusSubject = BehaviorSubject.create<Float>()
+    private val downloadStatusSubject = BehaviorSubject.create<Int>()
 
     fun isRegionLoaded(region: Region, callback: (Boolean) -> Unit) {
         offlineManager.listOfflineRegions(object : OfflineManager.ListOfflineRegionsCallback {
@@ -51,8 +51,9 @@ class MapRegionLoader @Inject constructor(
         loadRegion(regionRepository.find(regionId)!!)
     }
 
-    fun downloadStatus(): Observable<Float> = downloadStatusSubject
+    fun downloadStatus(): Observable<Int> = downloadStatusSubject
 
+    @Throws(Exception::class)
     private fun loadRegion(region: Region) {
         val bounds = LatLngBounds.from(region.north, region.east, region.south, region.west)
         val definition = OfflineTilePyramidRegionDefinition(
@@ -62,14 +63,14 @@ class MapRegionLoader @Inject constructor(
             Constants.MAX_ZOOM,
             context.resources.displayMetrics.density
         )
-        var metadata: ByteArray = byteArrayOf()
+        val metadata: ByteArray?
         try {
             val json = JSONObject()
                 .apply { put(JSON_FIELD_CODE, region.code) }
                 .toString()
             metadata = json.toByteArray(Charsets.UTF_8)
         } catch (ex: Exception) {
-
+            throw Exception(ex)
         }
         offlineManager.createOfflineRegion(definition, metadata, offlineRegionCallback)
     }
@@ -89,7 +90,7 @@ class MapRegionLoader @Inject constructor(
                         } else if (status.isRequiredResourceCountPrecise) {
                             val percentage = if (status.requiredResourceCount >= 0)
                                 status.completedResourceCount.toFloat() / status.requiredResourceCount.toFloat() * 100.0 else 0.0
-                            downloadStatusSubject.onNext(percentage.toFloat())
+                            downloadStatusSubject.onNext(percentage.toInt())
                         }
                     }
 

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
-import com.vlsu.maps.presentation.fragment.regions.OfflineMapSettingsScreen
+import com.vlsu.maps.presentation.fragment.offlinemap.OfflineMapSettingsScreen
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.terrakok.cicerone.Router
 import timber.log.Timber

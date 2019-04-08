@@ -64,16 +64,25 @@
                 android:id="@+id/btns_guideline"
                 android:orientation="vertical" app:layout_constraintGuide_end="8dp"/>
 
-    </android.support.constraint.ConstraintLayout>
+        <ProgressBar
+                app:layout_constraintBottom_toTopOf="@id/map_navbar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:id="@+id/map_progress_bar"
+                android:visibility="invisible"
+                android:backgroundTint="@color/colorDiamond"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    <android.support.design.widget.BottomNavigationView
-            android:layout_gravity="bottom"
-            android:id="@+id/map_navbar"
-            app:menu="@menu/map_nav_menu"
-            app:itemIconTint="@color/map_nav_color"
-            app:itemTextColor="@color/map_nav_color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <android.support.design.widget.BottomNavigationView
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/map_navbar"
+                app:menu="@menu/map_nav_menu"
+                app:itemIconTint="@color/map_nav_color"
+                app:itemTextColor="@color/map_nav_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </android.support.constraint.ConstraintLayout>
 
     <FrameLayout
             android:id="@+id/map_bottom_container"

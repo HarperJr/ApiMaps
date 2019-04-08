@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.regions
+package com.vlsu.maps.presentation.fragment.offlinemap
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import com.vlsu.maps.domain.interactor.region.RegionsProvider
@@ -43,5 +43,7 @@ class OfflineMapSettingsPresenter @Inject constructor(
 
     fun onRegionSelected(regionId: Long) {
         selectedRegion = regionId
+        rxBus.onEvent(RegionChangedEvent(selectedRegion!!))
+        router.exit()
     }
 }
