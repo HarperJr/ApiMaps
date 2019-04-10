@@ -16,4 +16,3 @@ class RxBus @Inject constructor() {
 }
 
 sealed class Event
-data class RegionChangedEvent(var regionId: Long) : Event()

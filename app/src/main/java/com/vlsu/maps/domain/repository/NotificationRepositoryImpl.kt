@@ -13,4 +13,7 @@ class NotificationRepositoryImpl @Inject constructor(
     private val notificationMapper: NotificationMapper
 ) : RepositoryImpl<NotificationEntity, Notification, Long>(notificationDao, notificationMapper), NotificationRepository {
 
+    override fun getWithBoundary(skip: Int, limit: Int): List<Notification> {
+        return notificationMapper.entityListToModelList(notificationDao.getWithBoundary(skip, limit))
+    }
 }

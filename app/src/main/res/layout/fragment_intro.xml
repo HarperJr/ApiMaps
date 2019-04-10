@@ -13,8 +13,8 @@
             android:layout_marginBottom="8dp"/>
 
     <android.support.design.button.MaterialButton
-            style="@style/TextAppearance.MaterialComponents.Button"
-            android:text="@string/intro_continue_btn"
+            style="@style/AppTheme.TextButton"
+            android:text="@string/intro_skip_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/intro_continue_btn"

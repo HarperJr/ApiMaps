@@ -42,21 +42,18 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.attachView(this)
-        requestPermissionsRx()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
         mapView = view.findViewById<com.mapbox.mapboxsdk.maps.MapView>(R.id.map)
             .apply { onCreate(savedInstanceState) }
-        mapView.getMapAsync(mapDelegate)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        map_layers_btn.setOnClickListener { presenter.onLayersButtonClicked() }
         map_zoom_in_btn.setOnClickListener { presenter.onZoomInButtonClicked() }
         map_zoom_out_btn.setOnClickListener { presenter.onZoomOutButtonClicked() }
         map_origin_btn.setOnClickListener { presenter.onLocationButtonClicked() }
@@ -96,6 +93,17 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         presenter.onBackPressed()
     }
 
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+        requestPermissionsRx()
+    }
+
+    override fun onStop() {
+        mapView.onStop()
+        super.onStop()
+    }
+
     override fun onResume() {
         super.onResume()
         fragmentRouter.setNavigator(navigator)
@@ -118,6 +126,11 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         mapView.onDestroy()
         mapDelegate.destroy()
         permissionsDisposable.dispose()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
@@ -176,6 +189,8 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
             .subscribe { granted ->
                 if (!granted) {
                     Timber.d("Permissions not granted")
+                } else {
+                    mapView.getMapAsync(mapDelegate)
                 }
             }
     }

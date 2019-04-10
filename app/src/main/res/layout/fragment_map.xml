@@ -17,22 +17,13 @@
 
         <android.support.design.widget.FloatingActionButton
                 style="@style/AppTheme.FloatingActionButton.White"
-                android:id="@+id/map_layers_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/btns_guideline"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="138dp" app:fabCustomSize="44dp"/>
-
-        <android.support.design.widget.FloatingActionButton
-                style="@style/AppTheme.FloatingActionButton.White"
                 android:id="@+id/map_zoom_in_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_zoom_in"
-                app:layout_constraintTop_toBottomOf="@id/map_layers_btn"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btns_guideline"
-                android:layout_marginTop="82dp" app:fabCustomSize="44dp"/>
+                android:layout_marginTop="250dp" app:fabCustomSize="44dp"/>
 
         <android.support.design.widget.FloatingActionButton
                 style="@style/AppTheme.FloatingActionButton.White"
@@ -57,7 +48,7 @@
         <android.support.constraint.Group
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/btns_group"
-                app:constraint_referenced_ids="map_zoom_out_btn,map_layers_btn,map_zoom_in_btn,map_origin_btn"/>
+                app:constraint_referenced_ids="map_zoom_out_btn,map_zoom_in_btn,map_origin_btn"/>
 
         <android.support.constraint.Guideline
                 android:layout_width="wrap_content" android:layout_height="wrap_content"

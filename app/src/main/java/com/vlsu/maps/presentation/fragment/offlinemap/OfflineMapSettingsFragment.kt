@@ -36,6 +36,8 @@ class OfflineMapSettingsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         offline_map_recycler.adapter = regionsAdapter
+        offline_map_accept_btn.setOnClickListener { presenter.onConfirmBtnClicked() }
+        offline_map_recycle_btn.setOnClickListener { presenter.onRecycleBtnClicked() }
     }
 
     override fun setRegions(regions: List<RegionItem>) {
@@ -55,9 +57,7 @@ class OfflineMapSettingsFragment :
 
     }
 
-    private val onItemClickListener = { id: Long ->
-        presenter.onRegionSelected(id)
-    }
+    private val onItemClickListener = { id: Long -> presenter.onRegionSelected(id) }
 
     companion object {
         fun newInstance() = OfflineMapSettingsFragment()

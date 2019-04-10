@@ -26,6 +26,11 @@ class NotificationFragment : MvpViewStateFragment<NotificationView, Notification
                 })
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter.attachView(this)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_notification, container, false)
     }
@@ -36,6 +41,16 @@ class NotificationFragment : MvpViewStateFragment<NotificationView, Notification
         with(notifications_recycler) {
             adapter = notificationsAdapter
         }
+    }
+
+    override fun onDestroy() {
+        presenter.detachView()
+        super.onDestroy()
+    }
+
+    override fun setNotifications(notifications: List<NotificationItem>) {
+        notificationsAdapter.items = notifications
+        notificationsAdapter.notifyDataSetChanged()
     }
 
     override fun createPresenter(): NotificationPresenter {

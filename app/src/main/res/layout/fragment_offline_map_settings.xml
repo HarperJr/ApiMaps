@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,12 +12,30 @@
             android:id="@+id/offline_map_recycler"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/offline_map_accept_btn" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"/>
 
     <android.support.design.button.MaterialButton
-            style="@style/TextAppearance.MaterialComponents.Button"
+            style="@style/AppTheme.TextButton"
+            android:id="@+id/offline_map_recycle_btn"
+            android:layout_width="wrap_content"
+            android:text="@string/settings_offline_map_recycle_btn"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"/>
+
+    <android.support.design.button.MaterialButton
+            style="@style/AppTheme.TextButton"
             android:id="@+id/offline_map_accept_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:text="@string/settings_offline_map_accept_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"/>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

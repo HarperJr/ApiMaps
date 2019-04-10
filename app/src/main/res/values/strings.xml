@@ -17,7 +17,9 @@
     <string name="settings_offline_connection_prefs">Настройки соединений</string>
     <string name="settings_offline_app_prefs">Настройки карты</string>
     <string name="settings_offline_sound">Звук</string>
-    <string name="settings_offline_maps_description">Качайте оффлайн карты, чтобы получить доступ к возможностям приложения без интернета</string>
+    <string name="settings_offline_maps_description">Качайте оффлайн карты, чтобы получить доступ к возможностям
+        приложения без интернета
+    </string>
     <string name="settings_offline_maps">Оффлайн карты</string>
 
     <string name="notification_title">Уведомления</string>
@@ -28,7 +30,11 @@
     <string name="intro_settings">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
     <string name="intro_offline">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
     <string name="intro_routes">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
-    <string name="intro_continue_btn">Продолжить</string>
+    <string name="intro_skip_btn">Пропустить</string>
 
     <string name="dialog_region_selector_apply_button">Выбрать</string>
+    <string name="settings_offline_map_accept_btn">Выбрать</string>
+    <string name="settings_offline_map_recycle_btn">Отменить</string>
+    <string name="notification_no_data_label">Нет уведомлений.</string>
+
 </resources>

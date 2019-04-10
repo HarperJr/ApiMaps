@@ -5,7 +5,7 @@ import com.vlsu.maps.data.database.repository.RegionRepository
 import com.vlsu.maps.data.database.transaction.DbTransaction
 import com.vlsu.maps.domain.interactor.AssetManager
 import com.vlsu.maps.domain.model.Region
-import com.vlsu.maps.presentation.fragment.map.interactor.Constants
+import com.vlsu.maps.domain.interactor.offlinemap.Constants
 import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionItem
 import io.reactivex.Completable
 import io.reactivex.Single

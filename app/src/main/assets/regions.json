@@ -1,7 +1,6 @@
 {
   "regions": [
     {
-      "id": 0,
       "code": "vladimir",
       "name": "Владимир",
       "order": 3,
@@ -11,7 +10,6 @@
       "west": 40.313821
     },
     {
-      "id": 1,
       "code": "vladimir",
       "name": "Москва",
       "order": 0,
@@ -21,7 +19,6 @@
       "west": 1
     },
     {
-      "id": 2,
       "code": "vladimir",
       "name": "Кинешма",
       "order": 4,
@@ -31,10 +28,45 @@
       "west": 1
     },
     {
-      "id": 3,
       "code": "vladimir",
       "name": "Иваново",
       "order": 2,
+      "north": 1,
+      "south": 1,
+      "east": 1,
+      "west": 1
+    },
+    {
+      "code": "vladimir",
+      "name": "Санкт-Петербург",
+      "order": 5,
+      "north": 1,
+      "south": 1,
+      "east": 1,
+      "west": 1
+    },
+    {
+      "code": "vladimir",
+      "name": "Екатеринбург",
+      "order": 6,
+      "north": 1,
+      "south": 1,
+      "east": 1,
+      "west": 1
+    },
+    {
+      "code": "vladimir",
+      "name": "Курск",
+      "order": 7,
+      "north": 1,
+      "south": 1,
+      "east": 1,
+      "west": 1
+    },
+    {
+      "code": "vladimir",
+      "name": "Нижний Новгород",
+      "order": 8,
       "north": 1,
       "south": 1,
       "east": 1,

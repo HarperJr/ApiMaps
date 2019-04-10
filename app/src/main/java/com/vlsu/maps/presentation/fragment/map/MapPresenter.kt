@@ -4,16 +4,12 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.vlsu.maps.di.scope.AppScope
 import com.vlsu.maps.domain.interactor.location.LocationUpdatesProvider
+import com.vlsu.maps.domain.interactor.offlinemap.MapRegionLoader
 import com.vlsu.maps.domain.rx.AppSchedulerProvider
-import com.vlsu.maps.domain.rx.RegionChangedEvent
-import com.vlsu.maps.domain.rx.RxBus
 import com.vlsu.maps.navigation.map.MapScreenRouter
-import com.vlsu.maps.presentation.fragment.map.interactor.MapRegionLoader
 import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
 import com.vlsu.maps.presentation.fragment.routing.RoutingScreen
 import com.vlsu.maps.presentation.fragment.settings.SettingsScreen
-import io.reactivex.Completable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
@@ -23,31 +19,27 @@ import javax.inject.Inject
 @AppScope
 class MapPresenter @Inject constructor(
     private val locationUpdatesProvider: LocationUpdatesProvider,
-    private val mapScreenRouter: MapScreenRouter,
     private val regionLoader: MapRegionLoader,
-    private val rxBus: RxBus
+    private val mapScreenRouter: MapScreenRouter
 ) : MvpBasePresenter<MapView>() {
 
     private var locationUpdatesDisposable = Disposables.disposed()
-    private var rxBusDisposable = Disposables.disposed()
     private var downloadStatusDisposable = Disposables.disposed()
 
     override fun attachView(view: MapView) {
         super.attachView(view)
-
-        rxBusDisposable = rxBus.event()
-            .subscribe {
-                if (it is RegionChangedEvent) {
-                    downloadRegion(it.regionId)
-                }
-            }
+        downloadStatusDisposable = regionLoader
+            .downloadStatus()
+            .observeOn(AppSchedulerProvider.ui())
+            .doOnNext { view.setProgressVisible(true) }
+            .doOnComplete { view.setProgressVisible(false) }
+            .subscribe(view::setProgress, Timber::e)
     }
 
     override fun detachView() {
         locationUpdatesProvider.stopUpdates()
 
         locationUpdatesDisposable.dispose()
-        rxBusDisposable.dispose()
         downloadStatusDisposable.dispose()
 
         super.detachView()
@@ -98,17 +90,6 @@ class MapPresenter @Inject constructor(
 
     fun onBottomSheetCollapsed() {
         mapScreenRouter.back()
-    }
-
-    private fun downloadRegion(regionId: Long) {
-        downloadStatusDisposable = Completable
-            .fromAction { regionLoader.loadRegion(regionId) }
-            .andThen(regionLoader.downloadStatus())
-            .subscribeOn(AppSchedulerProvider.io())
-            .observeOn(AppSchedulerProvider.ui())
-            .doOnSubscribe { ifViewAttached { it.setProgressVisible(true) } }
-            .doOnComplete { ifViewAttached { it.setProgressVisible(true) } }
-            .subscribe({ progress -> ifViewAttached { it.setProgress(progress) } }, Timber::e)
     }
 
     private fun observeLocationUpdates() {

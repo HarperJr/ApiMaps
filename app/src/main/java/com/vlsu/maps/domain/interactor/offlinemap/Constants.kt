@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.map.interactor
+package com.vlsu.maps.domain.interactor.offlinemap
 
 object Constants {
     const val REGIONS_FILE_NAME = "regions.json"

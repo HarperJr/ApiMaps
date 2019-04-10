@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.fragment.map.interactor
+package com.vlsu.maps.domain.interactor.offlinemap
 
 import android.content.Context
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
@@ -6,6 +6,8 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.offline.*
 import com.vlsu.maps.data.database.repository.RegionRepository
 import com.vlsu.maps.domain.model.Region
+import com.vlsu.maps.domain.rx.AppSchedulerProvider
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import org.json.JSONObject

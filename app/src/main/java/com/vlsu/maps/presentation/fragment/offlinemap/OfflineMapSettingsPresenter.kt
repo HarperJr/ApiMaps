@@ -3,7 +3,6 @@ package com.vlsu.maps.presentation.fragment.offlinemap
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import com.vlsu.maps.domain.interactor.region.RegionsProvider
 import com.vlsu.maps.domain.rx.AppSchedulerProvider
-import com.vlsu.maps.domain.rx.RegionChangedEvent
 import com.vlsu.maps.domain.rx.RxBus
 import io.reactivex.disposables.Disposables
 import ru.terrakok.cicerone.Router
@@ -37,13 +36,15 @@ class OfflineMapSettingsPresenter @Inject constructor(
 
     fun onConfirmBtnClicked() {
         if (selectedRegion != null) {
-            rxBus.onEvent(RegionChangedEvent(selectedRegion!!))
+
         }
     }
 
     fun onRegionSelected(regionId: Long) {
         selectedRegion = regionId
-        rxBus.onEvent(RegionChangedEvent(selectedRegion!!))
-        router.exit()
+    }
+
+    fun onRecycleBtnClicked() {
+
     }
 }
