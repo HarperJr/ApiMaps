@@ -24,7 +24,7 @@
 
     <string name="notification_title">Уведомления</string>
     <string name="notification_add_btn">Добавить уведомление</string>
-
+    <string name="notification_no_data_label">Нет уведомлений.</string>
 
     <string name="intro_about">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
     <string name="intro_settings">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
@@ -32,9 +32,11 @@
     <string name="intro_routes">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
     <string name="intro_skip_btn">Пропустить</string>
 
-    <string name="dialog_region_selector_apply_button">Выбрать</string>
     <string name="settings_offline_map_accept_btn">Выбрать</string>
     <string name="settings_offline_map_recycle_btn">Отменить</string>
-    <string name="notification_no_data_label">Нет уведомлений.</string>
+
+    <string name="notifying_title">Добавьте событие на дороге</string>
+    <string name="notifying_comment">Комментарий к событию</string>
+    <string name="notifying_accept_btn">Добавить событие</string>
 
 </resources>
