@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         tools:context=".presentation.fragment.notifying.NotifyingFragment">
 
     <TextView
@@ -38,27 +39,27 @@
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/notifying_type_warning"
+                android:id="@+id/notifying_type_ambulance"
                 android:layout_weight="1"
-                android:button="@mipmap/ic_launcher_round"/>
+                android:button="@drawable/ic_ambulance"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/notifying_type_collapse"
                 android:layout_weight="1"
-                android:button="@mipmap/ic_launcher"/>
+                android:button="@drawable/ic_collapse"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/notifying_type_support"
                 android:layout_weight="1"
-                android:button="@mipmap/ic_launcher"/>
+                android:button="@drawable/ic_support"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/notifying_type_message"
                 android:layout_weight="1"
-                android:button="@mipmap/ic_launcher"/>
+                android:button="@drawable/ic_message"/>
     </RadioGroup>
 
     <TextView

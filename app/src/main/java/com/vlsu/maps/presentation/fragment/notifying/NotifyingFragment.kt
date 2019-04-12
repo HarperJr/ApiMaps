@@ -47,7 +47,7 @@ class NotifyingFragment : MvpFragment<NotifyingView, NotifyingPresenter>(), Noti
         when (selected) {
             R.id.notifying_type_support -> presenter.onNotificationTypeChanged(NotificationType.SUPPORT_REQUEST)
             R.id.notifying_type_collapse -> presenter.onNotificationTypeChanged(NotificationType.COLLAPSE)
-            R.id.notifying_type_warning -> presenter.onNotificationTypeChanged(NotificationType.WARNING)
+            R.id.notifying_type_ambulance -> presenter.onNotificationTypeChanged(NotificationType.AMBULANCE)
             R.id.notifying_type_message -> presenter.onNotificationTypeChanged(NotificationType.MESSAGE)
         }
     }
@@ -59,5 +59,9 @@ class NotifyingFragment : MvpFragment<NotifyingView, NotifyingPresenter>(), Noti
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+    }
+
+    companion object {
+        fun newInstance() = NotifyingFragment()
     }
 }

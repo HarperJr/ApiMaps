@@ -16,7 +16,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
 import com.vlsu.maps.navigation.map.Navigator
-import com.vlsu.maps.presentation.OnBackPressable
+import com.vlsu.maps.presentation.view.OnBackPressable
 import io.reactivex.disposables.Disposables
 import kotlinx.android.synthetic.main.fragment_map.*
 import timber.log.Timber

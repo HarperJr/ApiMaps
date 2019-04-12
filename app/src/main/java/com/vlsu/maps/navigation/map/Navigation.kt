@@ -1,6 +1,7 @@
 package com.vlsu.maps.navigation.map
 
 import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
+import com.vlsu.maps.presentation.fragment.notifying.NotifyingScreen
 import com.vlsu.maps.presentation.fragment.routing.RoutingScreen
 import com.vlsu.maps.presentation.fragment.settings.SettingsScreen
 
@@ -9,7 +10,8 @@ class Navigation {
     enum class Screen(val key: String) {
         SETTINGS_SCREEN("SETTINGS_SCREEN"),
         ROUTING_SCREEN("ROUTING_SCREEN"),
-        NOTIFICATION_SCREEN("NOTIFICATION_SCREEN")
+        NOTIFICATION_SCREEN("NOTIFICATION_SCREEN"),
+        NOTIFYING_SCREEN("NOTIFYING_SCREEN")
     }
 
     companion object {
@@ -21,6 +23,7 @@ class Navigation {
             Screen.SETTINGS_SCREEN -> SettingsScreen()
             Screen.ROUTING_SCREEN -> RoutingScreen()
             Screen.NOTIFICATION_SCREEN -> NotificationScreen()
+            Screen.NOTIFYING_SCREEN -> NotifyingScreen()
         }
     }
 }
