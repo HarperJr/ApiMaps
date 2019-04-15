@@ -6,6 +6,7 @@ import com.vlsu.maps.di.module.AppModule
 import com.vlsu.maps.di.module.NavigationModule
 import com.vlsu.maps.di.module.NetworkModule
 import com.vlsu.maps.di.scope.AppScope
+import com.vlsu.maps.di.subcomponent.RoutingComposeComponent
 import com.vlsu.maps.di.subcomponent.app.*
 import dagger.Component
 
@@ -37,6 +38,10 @@ interface AppComponent {
     fun offlineMapSettingsComponent(): OfflineMapSettingsComponent
 
     fun notifyingComponent(): NotifyingComponent
+
+    fun routingComponent(): RoutingComponent
+
+    fun routingComposeComponent(): RoutingComposeComponent
 
     fun handler(): Handler
 }

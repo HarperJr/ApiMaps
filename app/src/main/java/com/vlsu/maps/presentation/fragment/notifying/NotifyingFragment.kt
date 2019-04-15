@@ -18,11 +18,6 @@ class NotifyingFragment : MvpFragment<NotifyingView, NotifyingPresenter>(), Noti
 
     private val component = Dagger.appComponent.notifyingComponent()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.attachView(this)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_notifying, container, false)
     }
@@ -32,11 +27,6 @@ class NotifyingFragment : MvpFragment<NotifyingView, NotifyingPresenter>(), Noti
         notifying_accept_btn.setOnClickListener { presenter.onAcceptBtnClicked() }
         notifying_comment_edit_text.addTextChangedListener(notifyingTextWatcher)
         notifying_type_radio_group.setOnCheckedChangeListener(onNotifyingTypeChangedListener)
-    }
-
-    override fun onDestroy() {
-        presenter.detachView()
-        super.onDestroy()
     }
 
     override fun createPresenter(): NotifyingPresenter {

@@ -54,4 +54,8 @@ class OfflineMapSettingsPresenter @Inject constructor(
         selectedRegion = region.id
         ifViewAttached { view -> view.showDialog(region.name) }
     }
+
+    fun onBackBtnClicked() {
+        router.exit()
+    }
 }

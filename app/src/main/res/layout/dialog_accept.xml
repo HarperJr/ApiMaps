@@ -4,7 +4,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp">
+        android:padding="16dp">
 
     <TextView
             android:id="@+id/dialog_accept_title"

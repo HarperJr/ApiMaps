@@ -8,11 +8,17 @@
         tools:context=".presentation.fragment.offlinemap.OfflineMapSettingsFragment"
         android:background="@color/colorPrimary">
 
+    <include
+            android:id="@+id/fragment_offline_map_toolbar"
+            layout="@layout/toolbar"/>
+
     <android.support.v7.widget.RecyclerView
             android:id="@+id/offline_map_recycler"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_offline_map_toolbar"
             android:layout_marginBottom="8dp"/>
 
 </android.support.constraint.ConstraintLayout>

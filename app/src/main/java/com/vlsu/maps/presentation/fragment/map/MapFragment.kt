@@ -40,11 +40,6 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
 
     private val fragmentRouter = component.fragmentRouter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.attachView(this)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
         mapView = view.findViewById<com.mapbox.mapboxsdk.maps.MapView>(R.id.map)
@@ -79,7 +74,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
                 true
             }
             R.id.menu_selection_routing -> {
-                presenter.navigateToRoute()
+                presenter.navigateToRouting()
                 true
             }
             else -> false
@@ -132,11 +127,6 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         mapView.onSaveInstanceState(outState)
-    }
-
-    override fun onDestroy() {
-        presenter.detachView()
-        super.onDestroy()
     }
 
     override fun zoomIn() {

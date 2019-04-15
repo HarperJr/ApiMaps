@@ -24,7 +24,7 @@
 
     <string name="notification_title">Уведомления</string>
     <string name="notification_add_btn">Добавить уведомление</string>
-    <string name="notification_no_data_label">Нет уведомлений.</string>
+    <string name="no_data_label">Нет уведомлений.</string>
 
     <string name="intro_about">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
     <string name="intro_settings">Открыв карту, вы увидете все доступные устройства в радиусе 1км</string>
@@ -43,5 +43,12 @@
     <string name="settings_offline_map_dialog_accept">Загрузить</string>
     <string name="settings_offline_map_dialog_subtitle">Загрзука карт требует стабильного подключения к интернету.
     </string>
+    <string name="fragment_routing_title">Маршруты</string>
+    <string name="fragment_routing_from">Откуда</string>
+    <string name="toolbar_title">Тулбар</string>
+    <string name="fragment_offline_map_settings_toolbar_title">Оффлайн карты</string>
+    <string name="region_view_download_btn_label">Загрузить</string>
+    <string name="fragment_routing_compose_toolbar_title">Создание маршрута</string>
+    <string name="fragment_routing_compose_btn_label">Построить маршрут</string>
 
 </resources>

@@ -2,107 +2,102 @@
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tool="http://schemas.android.com/tools"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
+            android:background="@color/colorPrimary"
+            android:divider="@drawable/divider"
+            android:showDividers="beginning|middle|end"
+            android:dividerPadding="3dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <LinearLayout
-                android:background="@color/colorPrimary"
-                android:divider="@drawable/divider"
-                android:showDividers="beginning|middle|end"
-                android:dividerPadding="3dp"
-                android:orientation="vertical"
+        <RelativeLayout
+                android:id="@+id/settings_offline_map_case"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            <RelativeLayout
-                    android:id="@+id/settings_offline_map_case"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                <TextView
-                        android:id="@+id/settings_offline_maps"
-                        style="@style/AppTheme.Title"
-                        android:text="@string/settings_offline_maps"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                <TextView
-                        android:layout_below="@+id/settings_offline_maps"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/settings_offline_maps_description"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:id="@+id/settings_sound_case"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                <TextView
-                        style="@style/AppTheme.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_offline_sound"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                <TextView
-                        style="@style/AppTheme.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_offline_app_prefs"
-                />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                <TextView
-                        style="@style/AppTheme.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_offline_connection_prefs"
-                />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                <TextView
-                        style="@style/AppTheme.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_navigation_prefs"/>
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
             <TextView
-                    android:padding="16dp"
+                    android:id="@+id/settings_offline_maps"
+                    style="@style/AppTheme.Title"
+                    android:text="@string/settings_offline_maps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_below="@+id/settings_offline_maps"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/settings_app_version"
-                    tool:text="Development version Alpha v0.0.1"/>
+                    android:layout_marginTop="8dp"
+                    android:text="@string/settings_offline_maps_description"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+        <RelativeLayout
+                android:id="@+id/settings_sound_case"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+            <TextView
+                    style="@style/AppTheme.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_offline_sound"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+            <TextView
+                    style="@style/AppTheme.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_offline_app_prefs"
+            />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+            <TextView
+                    style="@style/AppTheme.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_offline_connection_prefs"
+            />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+            <TextView
+                    style="@style/AppTheme.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_navigation_prefs"/>
+
+        </RelativeLayout>
+
+        <TextView
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_app_version"
+                tool:text="Development version Alpha v0.0.1"/>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

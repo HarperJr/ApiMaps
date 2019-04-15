@@ -26,7 +26,7 @@ class RegionsDelegate(
         val item = items[position]
         with(holder.itemView) {
             region_view_name.text = item.name
-            setOnClickListener {
+            region_view_download_btn.setOnClickListener {
                 onItemClickListener.invoke(item)
             }
         }

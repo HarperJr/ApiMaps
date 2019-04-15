@@ -2,6 +2,8 @@ package com.vlsu.maps.presentation.fragment.offlinemap
 
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import com.vlsu.maps.presentation.dialog.AcceptDialog
 import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionItem
 import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionsDelegate
 import kotlinx.android.synthetic.main.fragment_offline_map_settings.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 
 class OfflineMapSettingsFragment :
@@ -37,6 +40,9 @@ class OfflineMapSettingsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         offline_map_recycler.adapter = regionsAdapter
+        offline_map_recycler.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+        toolbar.setTitle(R.string.fragment_offline_map_settings_toolbar_title)
+        toolbar.setNavigationOnClickListener { presenter.onBackBtnClicked() }
     }
 
     override fun setRegions(regions: List<RegionItem>) {

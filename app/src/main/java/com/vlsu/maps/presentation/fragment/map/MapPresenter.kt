@@ -78,7 +78,7 @@ class MapPresenter @Inject constructor(
         ifViewAttached { it.setBottomSheetExpanded(true) }
     }
 
-    fun navigateToRoute() {
+    fun navigateToRouting() {
         mapScreenRouter.replace(RoutingScreen())
         ifViewAttached { it.setBottomSheetExpanded(true) }
     }
