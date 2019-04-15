@@ -39,7 +39,7 @@ class Navigator constructor(
 
     private fun execReplace(screen: Screen) {
         val newScreen = Navigation.key(screen.screenKey)
-        replace(fragment(currentScreen), fragment(newScreen))
+        replace(fragment(newScreen))
         currentScreen = newScreen
     }
 
@@ -57,8 +57,9 @@ class Navigator constructor(
         }
     }
 
-    private fun replace(toDetach: Fragment?, toAttach: Fragment) {
+    private fun replace(toAttach: Fragment) {
         with(fragmentManager.beginTransaction()) {
+            val toDetach = fragmentManager.findFragmentByTag(currentScreen.key)
             if (toDetach != null) {
                 detach(toDetach)
             }

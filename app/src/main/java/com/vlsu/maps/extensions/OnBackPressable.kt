@@ -1,4 +1,4 @@
-package com.vlsu.maps.presentation.view
+package com.vlsu.maps.extensions
 
 interface OnBackPressable {
     fun onBackPressed()

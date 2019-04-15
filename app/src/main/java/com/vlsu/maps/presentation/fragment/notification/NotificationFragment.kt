@@ -13,7 +13,7 @@ import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
 import com.vlsu.maps.presentation.fragment.notification.adapter.NotificationDelegate
 import com.vlsu.maps.presentation.fragment.notification.adapter.NotificationItem
-import com.vlsu.maps.presentation.view.visibility
+import com.vlsu.maps.extensions.visibility
 import kotlinx.android.synthetic.main.fragment_notification.*
 
 

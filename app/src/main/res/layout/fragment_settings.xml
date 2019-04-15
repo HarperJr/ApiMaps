@@ -94,32 +94,6 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                <TextView
-                        style="@style/AppTheme.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_notification_history"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                <TextView
-                        style="@style/AppTheme.Title"
-                        android:layout_width="wrap_content"
-                        android:text="@string/settings_about_app"
-                        android:layout_height="wrap_content"/>
-
-            </RelativeLayout>
-
             <TextView
                     android:padding="16dp"
                     android:layout_width="match_parent"

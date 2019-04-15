@@ -2,6 +2,7 @@ package com.vlsu.maps.presentation.fragment.map
 
 import com.hannesdorfmann.mosby3.mvp.MvpView
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.vlsu.maps.domain.model.NotificationType
 
 interface MapView : MvpView {
 
@@ -11,13 +12,13 @@ interface MapView : MvpView {
 
     fun zoomOut()
 
-    fun showLayersDialog()
-
     fun setOriginLocation(location: LatLng)
 
     fun setProgress(progress: Int)
 
-    fun setProgressVisible(visivle: Boolean)
+    fun setProgressVisible(visible: Boolean)
+
+    fun setNotification(notification: String, type: NotificationType)
 
     fun setBottomSheetExpanded(expanded: Boolean)
 }

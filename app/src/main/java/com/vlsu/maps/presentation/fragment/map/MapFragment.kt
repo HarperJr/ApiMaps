@@ -15,8 +15,9 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
+import com.vlsu.maps.domain.model.NotificationType
+import com.vlsu.maps.extensions.OnBackPressable
 import com.vlsu.maps.navigation.map.Navigator
-import com.vlsu.maps.presentation.view.OnBackPressable
 import io.reactivex.disposables.Disposables
 import kotlinx.android.synthetic.main.fragment_map.*
 import timber.log.Timber
@@ -146,12 +147,18 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         mapDelegate.zoomOut()
     }
 
-    override fun showLayersDialog() {
-        //TODO Layers dialog
-    }
-
     override fun setOriginLocation(location: LatLng) {
         mapDelegate.setOriginLocation(location)
+    }
+
+    override fun setNotification(notification: String, type: NotificationType) {
+        when (type) {
+            NotificationType.AMBULANCE -> mapDelegate.setOriginMarker(notification, R.drawable.ic_ambulance)
+            NotificationType.COLLAPSE -> mapDelegate.setOriginMarker(notification, R.drawable.ic_collapse)
+            NotificationType.SUPPORT_REQUEST -> mapDelegate.setOriginMarker(notification, R.drawable.ic_support)
+            NotificationType.MESSAGE -> mapDelegate.setOriginMarker(notification)
+            else -> Timber.e("Unhandled notification type")
+        }
     }
 
     override fun createViewState(): MapViewState {
@@ -176,8 +183,8 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         map_progress_bar.progress = progress
     }
 
-    override fun setProgressVisible(visivle: Boolean) {
-        map_progress_bar.visibility = if (visivle) View.VISIBLE else View.INVISIBLE
+    override fun setProgressVisible(visible: Boolean) {
+        map_progress_bar.visibility = if (visible) View.VISIBLE else View.INVISIBLE
     }
 
     private fun requestPermissionsRx() {
@@ -190,7 +197,9 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
                 if (!granted) {
                     Timber.d("Permissions not granted")
                 } else {
-                    mapView.getMapAsync(mapDelegate)
+                    mapView.getMapAsync { mapboxMap ->
+                        mapDelegate.onMapReady(mapView, mapboxMap)
+                    }
                 }
             }
     }
@@ -201,7 +210,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         }
 
         override fun onStateChanged(view: View, state: Int) {
-            if (state == BottomSheetBehavior.STATE_HIDDEN) presenter.onBottomSheetCollapsed()
+            if (state == BottomSheetBehavior.STATE_HIDDEN) presenter.onBottomSheetHidden()
         }
     }
 

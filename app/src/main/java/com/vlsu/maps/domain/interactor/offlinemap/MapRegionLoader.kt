@@ -5,22 +5,22 @@ import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.offline.*
 import com.vlsu.maps.data.database.repository.RegionRepository
+import com.vlsu.maps.di.scope.AppScope
 import com.vlsu.maps.domain.model.Region
-import com.vlsu.maps.domain.rx.AppSchedulerProvider
-import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 import org.json.JSONObject
 import timber.log.Timber
 import javax.inject.Inject
 
+@AppScope
 class MapRegionLoader @Inject constructor(
     private val context: Context,
     private val regionRepository: RegionRepository
 ) {
 
     private val offlineManager = OfflineManager.getInstance(context)
-    private val downloadStatusSubject = BehaviorSubject.create<Int>()
+    private val downloadStatusSubject = PublishSubject.create<Int>()
 
     fun isRegionLoaded(region: Region, callback: (Boolean) -> Unit) {
         offlineManager.listOfflineRegions(object : OfflineManager.ListOfflineRegionsCallback {
@@ -89,7 +89,7 @@ class MapRegionLoader @Inject constructor(
                     override fun onStatusChanged(status: OfflineRegionStatus) {
                         if (status.isComplete) {
                             downloadStatusSubject.onComplete()
-                        } else if (status.isRequiredResourceCountPrecise) {
+                        } else {
                             val percentage = if (status.requiredResourceCount >= 0)
                                 status.completedResourceCount.toFloat() / status.requiredResourceCount.toFloat() * 100.0 else 0.0
                             downloadStatusSubject.onNext(percentage.toInt())
@@ -97,7 +97,7 @@ class MapRegionLoader @Inject constructor(
                     }
 
                     override fun onError(error: OfflineRegionError) {
-                        downloadStatusSubject.onError(Exception(error.message))
+                        Timber.e(Throwable(error.message))
                     }
                 })
             }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="32dp">
+
+    <TextView
+            android:id="@+id/dialog_accept_title"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Владимир"/>
+
+    <TextView
+            android:id="@+id/dialog_accept_subtitle"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Вы загружаете раегион для оффлан карты, если вы согласны, то нажмите Принять"/>
+
+    <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:gravity="end"
+            android:layout_height="wrap_content">
+
+        <android.support.design.button.MaterialButton
+                android:id="@+id/dialog_accept_btn_cancel"
+                style="@style/AppTheme.TextButton"
+                android:text="@string/dialog_accept_btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <android.support.design.button.MaterialButton
+                android:id="@+id/dialog_accept_btn_accept"
+                style="@style/AppTheme.TextButton"
+                android:text="@string/dialog_accept_btn_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

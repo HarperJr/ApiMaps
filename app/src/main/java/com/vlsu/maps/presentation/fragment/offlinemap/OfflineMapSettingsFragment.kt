@@ -10,6 +10,7 @@ import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
+import com.vlsu.maps.presentation.dialog.AcceptDialog
 import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionItem
 import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionsDelegate
 import kotlinx.android.synthetic.main.fragment_offline_map_settings.*
@@ -36,8 +37,6 @@ class OfflineMapSettingsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         offline_map_recycler.adapter = regionsAdapter
-        offline_map_accept_btn.setOnClickListener { presenter.onConfirmBtnClicked() }
-        offline_map_recycle_btn.setOnClickListener { presenter.onRecycleBtnClicked() }
     }
 
     override fun setRegions(regions: List<RegionItem>) {
@@ -57,9 +56,24 @@ class OfflineMapSettingsFragment :
 
     }
 
-    private val onItemClickListener = { id: Long -> presenter.onRegionSelected(id) }
+    override fun showDialog(region: String) {
+        acceptDialog(region, presenter::onAcceptBtnClicked)
+            .show(childFragmentManager, REGION_DOWNLOAD_ACCEPT_DIALOG_TAG)
+    }
+
+    private fun acceptDialog(title: String, acceptBtnAction: () -> Unit): AcceptDialog {
+        return AcceptDialog.newInstance(
+            title = title,
+            subtitle = getString(R.string.settings_offline_map_dialog_subtitle),
+            acceptLabel = getString(R.string.settings_offline_map_dialog_accept)
+        ).apply { acceptBtnClickListener = acceptBtnAction }
+    }
+
+    private val onItemClickListener = { item: RegionItem -> presenter.onRegionSelected(item) }
 
     companion object {
         fun newInstance() = OfflineMapSettingsFragment()
+
+        private const val REGION_DOWNLOAD_ACCEPT_DIALOG_TAG = "REGION_DOWNLOAD_ACCEPT_DIALOG_TAG"
     }
 }

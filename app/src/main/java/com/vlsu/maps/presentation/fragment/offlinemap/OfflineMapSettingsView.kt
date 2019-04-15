@@ -5,4 +5,5 @@ import com.vlsu.maps.presentation.fragment.offlinemap.adapter.RegionItem
 
 interface OfflineMapSettingsView : MvpView {
     fun setRegions(regions: List<RegionItem>)
+    fun showDialog(region: String)
 }

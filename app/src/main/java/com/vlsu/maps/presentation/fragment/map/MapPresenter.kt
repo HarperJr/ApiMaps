@@ -33,7 +33,10 @@ class MapPresenter @Inject constructor(
             .observeOn(AppSchedulerProvider.ui())
             .doOnNext { view.setProgressVisible(true) }
             .doOnComplete { view.setProgressVisible(false) }
-            .subscribe(view::setProgress, Timber::e)
+            .subscribe({ progress ->
+                Timber.d("loading region, progress: $progress")
+                view.setProgress(progress)
+            }, Timber::e)
     }
 
     override fun detachView() {
@@ -51,10 +54,6 @@ class MapPresenter @Inject constructor(
 
     fun onMapMoved() {
         disposeLocationUpdates()
-    }
-
-    fun onLayersButtonClicked() {
-        ifViewAttached { it.showLayersDialog() }
     }
 
     fun onZoomInButtonClicked() {
@@ -88,7 +87,7 @@ class MapPresenter @Inject constructor(
         mapScreenRouter.back()
     }
 
-    fun onBottomSheetCollapsed() {
+    fun onBottomSheetHidden() {
         mapScreenRouter.back()
     }
 

@@ -38,5 +38,10 @@
     <string name="notifying_title">Добавьте событие на дороге</string>
     <string name="notifying_comment">Комментарий к событию</string>
     <string name="notifying_accept_btn">Добавить событие</string>
+    <string name="dialog_accept_btn_cancel">Отменить</string>
+    <string name="dialog_accept_btn_accept">Принять</string>
+    <string name="settings_offline_map_dialog_accept">Загрузить</string>
+    <string name="settings_offline_map_dialog_subtitle">Загрзука карт требует стабильного подключения к интернету.
+    </string>
 
 </resources>

@@ -9,7 +9,7 @@ import com.vlsu.maps.R
 import kotlinx.android.synthetic.main.region_view_item.view.*
 
 class RegionsDelegate(
-    private val onItemClickListener: (id: Long) -> Unit
+    private val onItemClickListener: (item: RegionItem) -> Unit
 ) : AdapterDelegate<List<RegionItem>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
@@ -27,7 +27,7 @@ class RegionsDelegate(
         with(holder.itemView) {
             region_view_name.text = item.name
             setOnClickListener {
-                onItemClickListener.invoke(item.id)
+                onItemClickListener.invoke(item)
             }
         }
     }

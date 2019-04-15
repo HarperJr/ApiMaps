@@ -71,7 +71,8 @@ dependencies {
     //Adapter delegates
     implementation 'com.hannesdorfmann:adapterdelegates3:3.1.0'
     //MapBox
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.1.2'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.3.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v7:0.6.0'
     //Timber
     implementation "com.jakewharton.timber:timber:4.7.1"
 
