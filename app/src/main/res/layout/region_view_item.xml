@@ -16,14 +16,13 @@
             app:layout_constraintTop_toTopOf="parent"
             tool:text="Vladimir"/>
 
-    <android.support.design.button.MaterialButton
+    <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/region_view_download_btn"
-            app:iconTint="@color/colorDiamond"
-            app:icon="@drawable/ic_arrow_down_collapse"
-            android:textColor="@color/colorGrey"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/AppTheme.RoundButton"
+            android:src="@drawable/ic_arrow_down_collapse"
+            android:tint="@color/colorDiamond"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/region_view_name"
             app:layout_constraintBottom_toBottomOf="@+id/region_view_name"/>

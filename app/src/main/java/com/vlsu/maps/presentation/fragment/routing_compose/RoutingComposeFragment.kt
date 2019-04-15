@@ -23,7 +23,7 @@ class RoutingComposeFragment :
         super.onViewCreated(view, savedInstanceState)
 
         with(toolbar) {
-            setTitle(R.string.fragment_routing_compose_toolbar_title)
+            setTitle(R.string.routing_compose_toolbar_title)
             setNavigationOnClickListener { presenter.onBackBtnClicked() }
         }
     }

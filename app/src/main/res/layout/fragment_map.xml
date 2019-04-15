@@ -64,14 +64,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        <android.support.design.widget.BottomNavigationView
+        <android.support.constraint.ConstraintLayout
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/map_navbar"
-                app:menu="@menu/map_nav_menu"
-                app:itemIconTint="@color/map_nav_color"
-                app:itemTextColor="@color/map_nav_color"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+            <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/map_nav_notifications"
+                    style="@style/AppTheme.RoundButton"
+                    android:src="@drawable/ic_notifications"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/map_nav_routing"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/map_nav_routing"
+                    style="@style/AppTheme.RoundButton"
+                    android:src="@drawable/ic_routing"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:layout_constraintStart_toEndOf="@+id/map_nav_notifications"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/map_nav_settings"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/map_nav_settings"
+                    style="@style/AppTheme.RoundButton"
+                    android:src="@drawable/ic_settings"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:layout_constraintStart_toEndOf="@+id/map_nav_routing"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
 

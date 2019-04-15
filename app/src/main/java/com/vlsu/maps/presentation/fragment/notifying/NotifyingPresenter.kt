@@ -31,7 +31,7 @@ class NotifyingPresenter @Inject constructor(
     }
 
     fun onAcceptBtnClicked() {
-        if (notification.isEmpty()) return
+        if (notification.isEmpty() || notificationType == NotificationType.UNDEFINED) return
         notifyingDisposable.dispose()
         notifyingDisposable = notificationsManager
             .notify(NotificationItem(notificationType, Date(), notification))

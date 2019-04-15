@@ -8,15 +8,15 @@ import javax.inject.Inject
 
 @AppScope
 class MainPresenter @Inject constructor(
-    private val appRouter: Router
+    private val router: Router
 ) : MvpBasePresenter<MainView>() {
 
     override fun attachView(view: MainView) {
         super.attachView(view)
-        appRouter.navigateTo(IntroScreen())
+        router.navigateTo(IntroScreen())
     }
 
     fun onBackPressed() {
-        appRouter.exit()
+        router.exit()
     }
 }

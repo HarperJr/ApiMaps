@@ -41,7 +41,7 @@ class OfflineMapSettingsFragment :
         super.onViewCreated(view, savedInstanceState)
         offline_map_recycler.adapter = regionsAdapter
         offline_map_recycler.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
-        toolbar.setTitle(R.string.fragment_offline_map_settings_toolbar_title)
+        toolbar.setTitle(R.string.offline_map_settings_toolbar_title)
         toolbar.setNavigationOnClickListener { presenter.onBackBtnClicked() }
     }
 

@@ -24,7 +24,7 @@ import timber.log.Timber
 
 
 class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
-    MapView, BottomNavigationView.OnNavigationItemSelectedListener, OnBackPressable {
+    MapView, OnBackPressable {
 
     private val rxPermissions by lazy { RxPermissions(this) }
     private var permissionsDisposable = Disposables.disposed()
@@ -54,31 +54,15 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         map_zoom_out_btn.setOnClickListener { presenter.onZoomOutButtonClicked() }
         map_origin_btn.setOnClickListener { presenter.onLocationButtonClicked() }
 
-        map_navbar.setOnNavigationItemSelectedListener(this)
-
         ((map_bottom_container.layoutParams as CoordinatorLayout.LayoutParams)
             .behavior as BottomSheetBehavior).setBottomSheetCallback(bottomSheetStateCallback)
 
+        map_nav_notifications.setOnClickListener {  presenter.navigateToNotifications() }
+        map_nav_routing.setOnClickListener { presenter.navigateToRouting() }
+        map_nav_settings.setOnClickListener { presenter.navigateToSettings() }
+
         mapDelegate.onMapReadyListener = presenter::onMapReady
         mapDelegate.onMapMoveListener = presenter::onMapMoved
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_selection_notifications -> {
-                presenter.navigateToNotifications()
-                true
-            }
-            R.id.menu_selection_settings -> {
-                presenter.navigateToSettings()
-                true
-            }
-            R.id.menu_selection_routing -> {
-                presenter.navigateToRouting()
-                true
-            }
-            else -> false
-        }
     }
 
     override fun setOriginBtnActive(active: Boolean) {

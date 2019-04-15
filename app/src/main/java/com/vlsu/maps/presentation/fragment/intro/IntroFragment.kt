@@ -24,10 +24,10 @@ class IntroFragment : Fragment() {
     lateinit var router: Router
 
     private val introPages = listOf(
-        IntroItem(R.drawable.ic_notifications, R.string.intro_about),
-        IntroItem(R.drawable.ic_routing, R.string.intro_settings),
-        IntroItem(R.drawable.ic_settings, R.string.intro_routes),
-        IntroItem(R.drawable.ic_unknown, R.string.intro_offline)
+        IntroItem(R.drawable.ic_logo, R.string.intro_about),
+        IntroItem(R.drawable.ic_logo, R.string.intro_settings),
+        IntroItem(R.drawable.ic_logo, R.string.intro_routes),
+        IntroItem(R.drawable.ic_logo, R.string.intro_offline)
     )
     private var currentPage = 0
 

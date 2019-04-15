@@ -35,10 +35,22 @@ class NotifyingFragment : MvpFragment<NotifyingView, NotifyingPresenter>(), Noti
 
     private val onNotifyingTypeChangedListener = { _: RadioGroup, selected: Int ->
         when (selected) {
-            R.id.notifying_type_support -> presenter.onNotificationTypeChanged(NotificationType.SUPPORT_REQUEST)
-            R.id.notifying_type_collapse -> presenter.onNotificationTypeChanged(NotificationType.COLLAPSE)
-            R.id.notifying_type_ambulance -> presenter.onNotificationTypeChanged(NotificationType.AMBULANCE)
-            R.id.notifying_type_message -> presenter.onNotificationTypeChanged(NotificationType.MESSAGE)
+            R.id.notifying_type_support -> {
+                presenter.onNotificationTypeChanged(NotificationType.SUPPORT_REQUEST)
+                notifying_type_label.text = getString(R.string.notifying_type_support)
+            }
+            R.id.notifying_type_collapse -> {
+                presenter.onNotificationTypeChanged(NotificationType.COLLAPSE)
+                notifying_type_label.text = getString(R.string.notifying_type_collapse)
+            }
+            R.id.notifying_type_ambulance -> {
+                presenter.onNotificationTypeChanged(NotificationType.AMBULANCE)
+                notifying_type_label.text = getString(R.string.notifying_type_ambulance)
+            }
+            R.id.notifying_type_message -> {
+                presenter.onNotificationTypeChanged(NotificationType.MESSAGE)
+                notifying_type_label.text = getString(R.string.notifying_type_message)
+            }
         }
     }
 
