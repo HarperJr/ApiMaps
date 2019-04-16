@@ -45,6 +45,7 @@ class NotifyingPresenter @Inject constructor(
     fun onNotificationTypeChanged(notificationType: NotificationType) {
         Timber.d("onNotificationTypeChanged $notificationType")
         this.notificationType = notificationType
+        ifViewAttached { view -> view.setNotificationType(notificationType) }
     }
 
     fun onNotifyingTextChanged(notification: String) {

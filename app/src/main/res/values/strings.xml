@@ -38,14 +38,19 @@
     <string name="notifying_title">Добавьте событие на дороге</string>
     <string name="notifying_comment">Комментарий к событию</string>
     <string name="notifying_accept_btn">Добавить событие</string>
+
     <string name="dialog_accept_btn_cancel">Отменить</string>
     <string name="dialog_accept_btn_accept">Принять</string>
+
     <string name="settings_offline_map_dialog_accept">Загрузить</string>
-    <string name="settings_offline_map_dialog_subtitle">Загрзука карт требует стабильного подключения к интернету.
+    <string name="settings_offline_map_dialog_subtitle">Загрузка карт требует стабильного подключения к интернету.
     </string>
+
     <string name="routing_title">Маршруты</string>
     <string name="routing_from">Откуда</string>
+
     <string name="toolbar_title">Тулбар</string>
+
     <string name="offline_map_settings_toolbar_title">Оффлайн карты</string>
     <string name="region_view_download_btn_label">Загрузить</string>
     <string name="routing_compose_toolbar_title">Создание маршрута</string>

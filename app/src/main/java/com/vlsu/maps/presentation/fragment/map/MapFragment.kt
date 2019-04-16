@@ -3,11 +3,9 @@ package com.vlsu.maps.presentation.fragment.map
 
 import android.Manifest
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.CoordinatorLayout
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment
@@ -57,9 +55,9 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         ((map_bottom_container.layoutParams as CoordinatorLayout.LayoutParams)
             .behavior as BottomSheetBehavior).setBottomSheetCallback(bottomSheetStateCallback)
 
-        map_nav_notifications.setOnClickListener {  presenter.navigateToNotifications() }
-        map_nav_routing.setOnClickListener { presenter.navigateToRouting() }
-        map_nav_settings.setOnClickListener { presenter.navigateToSettings() }
+        nav_notifications.setOnClickListener { presenter.navigateToNotifications() }
+        nav_routing.setOnClickListener { presenter.navigateToRouting() }
+        nav_settings.setOnClickListener { presenter.navigateToSettings() }
 
         mapDelegate.onMapReadyListener = presenter::onMapReady
         mapDelegate.onMapMoveListener = presenter::onMapMoved

@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioGroup
 import com.hannesdorfmann.mosby3.mvp.MvpFragment
 import com.vlsu.maps.R
 import com.vlsu.maps.di.Dagger
@@ -26,32 +25,34 @@ class NotifyingFragment : MvpFragment<NotifyingView, NotifyingPresenter>(), Noti
         super.onViewCreated(view, savedInstanceState)
         notifying_accept_btn.setOnClickListener { presenter.onAcceptBtnClicked() }
         notifying_comment_edit_text.addTextChangedListener(notifyingTextWatcher)
-        notifying_type_radio_group.setOnCheckedChangeListener(onNotifyingTypeChangedListener)
+
+        notifying_type_ambulance.setOnClickListener {
+            presenter.onNotificationTypeChanged(NotificationType.AMBULANCE)
+        }
+        notifying_type_support.setOnClickListener {
+            presenter.onNotificationTypeChanged(NotificationType.SUPPORT_REQUEST)
+        }
+        notifying_type_collapse.setOnClickListener {
+            presenter.onNotificationTypeChanged(NotificationType.COLLAPSE)
+        }
+        notifying_type_message.setOnClickListener {
+            presenter.onNotificationTypeChanged(NotificationType.MESSAGE)
+        }
+    }
+
+    override fun setNotificationType(notificationType: NotificationType) {
+        val typeLabel = when (notificationType) {
+            NotificationType.AMBULANCE -> getString(R.string.notifying_type_ambulance)
+            NotificationType.COLLAPSE -> getString(R.string.notifying_type_collapse)
+            NotificationType.SUPPORT_REQUEST -> getString(R.string.notifying_type_support)
+            NotificationType.MESSAGE -> getString(R.string.notifying_type_message)
+            else -> ""
+        }
+        notifying_type_label.text = typeLabel
     }
 
     override fun createPresenter(): NotifyingPresenter {
         return component.notifyingPresenter()
-    }
-
-    private val onNotifyingTypeChangedListener = { _: RadioGroup, selected: Int ->
-        when (selected) {
-            R.id.notifying_type_support -> {
-                presenter.onNotificationTypeChanged(NotificationType.SUPPORT_REQUEST)
-                notifying_type_label.text = getString(R.string.notifying_type_support)
-            }
-            R.id.notifying_type_collapse -> {
-                presenter.onNotificationTypeChanged(NotificationType.COLLAPSE)
-                notifying_type_label.text = getString(R.string.notifying_type_collapse)
-            }
-            R.id.notifying_type_ambulance -> {
-                presenter.onNotificationTypeChanged(NotificationType.AMBULANCE)
-                notifying_type_label.text = getString(R.string.notifying_type_ambulance)
-            }
-            R.id.notifying_type_message -> {
-                presenter.onNotificationTypeChanged(NotificationType.MESSAGE)
-                notifying_type_label.text = getString(R.string.notifying_type_message)
-            }
-        }
     }
 
     private val notifyingTextWatcher = object : TextWatcher {
