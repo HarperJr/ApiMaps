@@ -3,6 +3,7 @@ package com.vlsu.maps.presentation.fragment.map
 import com.hannesdorfmann.mosby3.mvp.MvpView
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.vlsu.maps.domain.model.NotificationType
+import com.vlsu.maps.presentation.fragment.map.item.IncomingNotificationItem
 
 interface MapView : MvpView {
 
@@ -23,4 +24,8 @@ interface MapView : MvpView {
     fun setBottomSheetExpanded(expanded: Boolean)
 
     fun setNotificationBarRevealed(revealed: Boolean)
+
+    fun showNotification(notification: IncomingNotificationItem)
+
+    fun showVitalNotification(notification: IncomingNotificationItem)
 }

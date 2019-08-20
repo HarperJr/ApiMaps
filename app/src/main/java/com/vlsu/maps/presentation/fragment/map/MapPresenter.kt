@@ -6,6 +6,7 @@ import com.vlsu.maps.di.scope.AppScope
 import com.vlsu.maps.domain.interactor.location.LocationUpdatesProvider
 import com.vlsu.maps.domain.interactor.notification.NotificationsProvider
 import com.vlsu.maps.domain.interactor.offlinemap.MapRegionLoader
+import com.vlsu.maps.domain.model.NotificationType
 import com.vlsu.maps.domain.rx.AppSchedulerProvider
 import com.vlsu.maps.navigation.map.MapScreenRouter
 import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
@@ -30,6 +31,7 @@ class MapPresenter @Inject constructor(
     private var locationUpdatesDisposable = Disposables.disposed()
     private var downloadStatusDisposable = Disposables.disposed()
     private var notificationsDisposable = Disposables.disposed()
+    private var hasNotificationsDisposable = Disposables.disposed()
     private var notificationTabRevealTimerDisposable = Disposables.disposed()
 
     override fun attachView(view: MapView) {
@@ -42,6 +44,18 @@ class MapPresenter @Inject constructor(
             .subscribe({ progress ->
                 Timber.d("loading region, progress: $progress")
                 view.setProgress(progress)
+            }, Timber::e)
+        notificationsDisposable = notificationsProvider.incomingNotifications()
+            .subscribeOn(AppSchedulerProvider.io())
+            .observeOn(AppSchedulerProvider.ui())
+            .subscribe({ notification ->
+                ifViewAttached {
+                    if (notification.type == NotificationType.COLLAPSE) {
+                        it.setNotificationBarRevealed(false)
+                        it.showVitalNotification(notification)
+                    }
+                    it.showNotification(notification)
+                }
             }, Timber::e)
     }
 
@@ -98,13 +112,17 @@ class MapPresenter @Inject constructor(
         mapScreenRouter.back()
     }
 
+    fun onDialogDismissed() {
+        setNotificationTabRevealedDelayed(true, NOTIFICATION_TAB_REVEAL_DELAY)
+    }
+
     private fun invalidateState() {
-        notificationsDisposable.dispose()
-        notificationsDisposable = notificationsProvider.unreadNotifications()
+        hasNotificationsDisposable.dispose()
+        hasNotificationsDisposable = notificationsProvider.hasUnreadNotifications()
             .subscribeOn(AppSchedulerProvider.io())
             .observeOn(AppSchedulerProvider.ui())
-            .subscribe({ notifications ->
-                setNotificationTabRevealedDelayed(notifications.isNotEmpty(), NOTIFICATION_TAB_REVEAL_DELAY)
+            .subscribe({ hasNotifications ->
+                setNotificationTabRevealedDelayed(hasNotifications, NOTIFICATION_TAB_REVEAL_DELAY)
             }, Timber::e)
     }
 
@@ -132,11 +150,12 @@ class MapPresenter @Inject constructor(
     private fun disposeLocationUpdates() {
         locationUpdatesProvider.stopUpdates()
         locationUpdatesDisposable.dispose()
-        notificationsDisposable.dispose()
+        hasNotificationsDisposable.dispose()
         notificationTabRevealTimerDisposable.dispose()
 
         ifViewAttached { it.setOriginBtnActive(false) }
     }
+
 
     companion object {
         private const val NOTIFICATION_TAB_REVEAL_DELAY = 1000L

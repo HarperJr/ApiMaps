@@ -124,7 +124,6 @@
         <ImageView
                 android:id="@+id/notification_icon"
                 android:src="@drawable/ic_round_alert"
-                android:tint="@color/colorGrey"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -132,6 +131,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+                android:id="@+id/notification_title"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

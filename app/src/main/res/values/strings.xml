@@ -61,6 +61,7 @@
     <string name="notifying_type_ambulance">Неотложенная помощь</string>
     <string name="notifying_type_message">Сообщение</string>
     <string name="notification_idle_text">Нет уведомлений</string>
+    <string name="notification_collapse_alert_title">Авария!</string>
 
 
 </resources>

@@ -31,9 +31,15 @@ class NotificationsProvider @Inject constructor(
         }
     }
 
-    fun unreadNotifications(): Observable<List<IncomingNotificationItem>> {
+    fun hasUnreadNotifications(): Single<Boolean> {
         return Single
-            .just(listOf(IncomingNotificationItem(NotificationType.COLLAPSE, Date(), "Notification")))
+            .just(listOf(IncomingNotificationItem(NotificationType.COLLAPSE, Date(), "Notification", true)))
+            .map { notifications -> notifications.isNotEmpty() }
+    }
+
+    fun incomingNotifications(): Observable<IncomingNotificationItem> {
+        return Single
+            .just(IncomingNotificationItem(NotificationType.COLLAPSE, Date(), "Notification", true))
             .toObservable()
     }
 

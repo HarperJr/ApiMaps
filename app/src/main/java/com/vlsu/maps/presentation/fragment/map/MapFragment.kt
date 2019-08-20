@@ -3,13 +3,14 @@ package com.vlsu.maps.presentation.fragment.map
 
 import android.Manifest
 import android.animation.ObjectAnimator
+import android.app.Dialog
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.CoordinatorLayout
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.app.AlertDialog
+import android.view.*
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment
+import com.mapbox.android.gestures.Utils
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.vlsu.maps.R
@@ -17,6 +18,7 @@ import com.vlsu.maps.di.Dagger
 import com.vlsu.maps.domain.model.NotificationType
 import com.vlsu.maps.extensions.OnBackPressable
 import com.vlsu.maps.navigation.map.Navigator
+import com.vlsu.maps.presentation.fragment.map.item.IncomingNotificationItem
 import io.reactivex.disposables.Disposables
 import kotlinx.android.synthetic.main.fragment_map.*
 import timber.log.Timber
@@ -42,6 +44,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         lateinit var reveal: () -> Unit
         lateinit var hide: () -> Unit
     }
+    private var notificationAlertDialog: Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
@@ -58,7 +61,10 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         map_origin_btn.setOnClickListener { presenter.onLocationButtonClicked() }
 
         ((map_bottom_container.layoutParams as CoordinatorLayout.LayoutParams)
-            .behavior as BottomSheetBehavior).setBottomSheetCallback(bottomSheetStateCallback)
+            .behavior as BottomSheetBehavior).apply {
+            setBottomSheetCallback(bottomSheetStateCallback)
+            isHideable = true
+        }
 
         nav_notifications.setOnClickListener { presenter.navigateToNotifications() }
         nav_routing.setOnClickListener { presenter.navigateToRouting() }
@@ -80,6 +86,32 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
                 start()
             }
         }
+    }
+
+    override fun showNotification(notification: IncomingNotificationItem) {
+        notification_icon.setImageResource(NotificationType.getIcon(notification.type))
+        notification_title.text = notification.description
+    }
+
+    override fun showVitalNotification(notification: IncomingNotificationItem) {
+        if (notificationAlertDialog != null) notificationAlertDialog!!.hide()
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle(R.string.notification_collapse_alert_title)
+            .setMessage(notification.description)
+            .setIcon(NotificationType.getIcon(notification.type))
+            .setOnDismissListener {
+                presenter.onDialogDismissed()
+                notificationAlertDialog = null
+            }
+            .create()
+        dialog.apply {
+            window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            window?.attributes?.gravity = Gravity.TOP
+            window?.attributes?.verticalMargin = 0.1f
+            show()
+        }
+
+        notificationAlertDialog = dialog
     }
 
     override fun setNotificationBarRevealed(revealed: Boolean) {

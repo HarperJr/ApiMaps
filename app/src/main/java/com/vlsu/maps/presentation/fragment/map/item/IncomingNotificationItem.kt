@@ -6,5 +6,6 @@ import java.util.*
 data class IncomingNotificationItem(
     val type: NotificationType,
     val date: Date? = null,
-    val description: String
+    val description: String,
+    val unread: Boolean
 )
