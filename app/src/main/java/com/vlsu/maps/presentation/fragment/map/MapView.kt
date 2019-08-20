@@ -21,4 +21,6 @@ interface MapView : MvpView {
     fun setNotification(notification: String, type: NotificationType)
 
     fun setBottomSheetExpanded(expanded: Boolean)
+
+    fun setNotificationBarRevealed(revealed: Boolean)
 }

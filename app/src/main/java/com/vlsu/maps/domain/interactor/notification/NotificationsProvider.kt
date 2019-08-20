@@ -2,13 +2,16 @@ package com.vlsu.maps.domain.interactor.notification
 
 import com.vlsu.maps.data.database.repository.NotificationRepository
 import com.vlsu.maps.domain.model.Notification
+import com.vlsu.maps.domain.model.NotificationType
+import com.vlsu.maps.presentation.fragment.map.item.IncomingNotificationItem
 import com.vlsu.maps.presentation.fragment.notification.adapter.NotificationItem
 import io.reactivex.Observable
 import io.reactivex.Single
+import java.util.*
 import javax.inject.Inject
 
 class NotificationsProvider @Inject constructor(
-  private val notificationRepository: NotificationRepository
+    private val notificationRepository: NotificationRepository
 ) {
     fun notifications(): Observable<List<NotificationItem>> = Single
         .fromCallable {
@@ -26,6 +29,12 @@ class NotificationsProvider @Inject constructor(
                 published = it.published
             )
         }
+    }
+
+    fun unreadNotifications(): Observable<List<IncomingNotificationItem>> {
+        return Single
+            .just(listOf(IncomingNotificationItem(NotificationType.COLLAPSE, Date(), "Notification")))
+            .toObservable()
     }
 
 }

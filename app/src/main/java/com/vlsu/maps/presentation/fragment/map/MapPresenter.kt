@@ -4,27 +4,33 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.vlsu.maps.di.scope.AppScope
 import com.vlsu.maps.domain.interactor.location.LocationUpdatesProvider
+import com.vlsu.maps.domain.interactor.notification.NotificationsProvider
 import com.vlsu.maps.domain.interactor.offlinemap.MapRegionLoader
 import com.vlsu.maps.domain.rx.AppSchedulerProvider
 import com.vlsu.maps.navigation.map.MapScreenRouter
 import com.vlsu.maps.presentation.fragment.notification.NotificationScreen
 import com.vlsu.maps.presentation.fragment.routing.RoutingScreen
 import com.vlsu.maps.presentation.fragment.settings.SettingsScreen
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AppScope
 class MapPresenter @Inject constructor(
     private val locationUpdatesProvider: LocationUpdatesProvider,
+    private val notificationsProvider: NotificationsProvider,
     private val regionLoader: MapRegionLoader,
     private val mapScreenRouter: MapScreenRouter
 ) : MvpBasePresenter<MapView>() {
 
     private var locationUpdatesDisposable = Disposables.disposed()
     private var downloadStatusDisposable = Disposables.disposed()
+    private var notificationsDisposable = Disposables.disposed()
+    private var notificationTabRevealTimerDisposable = Disposables.disposed()
 
     override fun attachView(view: MapView) {
         super.attachView(view)
@@ -54,6 +60,7 @@ class MapPresenter @Inject constructor(
 
     fun onMapMoved() {
         disposeLocationUpdates()
+        invalidateState()
     }
 
     fun onZoomInButtonClicked() {
@@ -91,6 +98,25 @@ class MapPresenter @Inject constructor(
         mapScreenRouter.back()
     }
 
+    private fun invalidateState() {
+        notificationsDisposable.dispose()
+        notificationsDisposable = notificationsProvider.unreadNotifications()
+            .subscribeOn(AppSchedulerProvider.io())
+            .observeOn(AppSchedulerProvider.ui())
+            .subscribe({ notifications ->
+                setNotificationTabRevealedDelayed(notifications.isNotEmpty(), NOTIFICATION_TAB_REVEAL_DELAY)
+            }, Timber::e)
+    }
+
+    private fun setNotificationTabRevealedDelayed(revealed: Boolean, delay: Long) {
+        notificationTabRevealTimerDisposable.dispose()
+        notificationTabRevealTimerDisposable = Observable.timer(delay, TimeUnit.MILLISECONDS, AppSchedulerProvider.io())
+            .observeOn(AppSchedulerProvider.ui())
+            .subscribe {
+                ifViewAttached { it.setNotificationBarRevealed(revealed) }
+            }
+    }
+
     private fun observeLocationUpdates() {
         locationUpdatesProvider.startUpdates()
         locationUpdatesDisposable = locationUpdatesProvider.updates()
@@ -106,7 +132,13 @@ class MapPresenter @Inject constructor(
     private fun disposeLocationUpdates() {
         locationUpdatesProvider.stopUpdates()
         locationUpdatesDisposable.dispose()
+        notificationsDisposable.dispose()
+        notificationTabRevealTimerDisposable.dispose()
 
         ifViewAttached { it.setOriginBtnActive(false) }
+    }
+
+    companion object {
+        private const val NOTIFICATION_TAB_REVEAL_DELAY = 1000L
     }
 }

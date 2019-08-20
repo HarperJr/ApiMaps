@@ -2,6 +2,7 @@ package com.vlsu.maps.presentation.fragment.map
 
 
 import android.Manifest
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.CoordinatorLayout
@@ -37,6 +38,10 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
     private lateinit var mapView: com.mapbox.mapboxsdk.maps.MapView
 
     private val fragmentRouter = component.fragmentRouter()
+    private val notificationBarController = object {
+        lateinit var reveal: () -> Unit
+        lateinit var hide: () -> Unit
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
@@ -61,6 +66,24 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
 
         mapDelegate.onMapReadyListener = presenter::onMapReady
         mapDelegate.onMapMoveListener = presenter::onMapMoved
+
+        notificationBarController.reveal = {
+            ObjectAnimator.ofFloat(notification_bar, "translationY", 0f).apply {
+                duration = NOTIFICATION_BAR_REVEAL_DURATION
+                start()
+            }
+        }
+        notificationBarController.hide = {
+            val height = notification_bar.height.toFloat()
+            ObjectAnimator.ofFloat(notification_bar, "translationY", -height).apply {
+                duration = NOTIFICATION_BAR_REVEAL_DURATION
+                start()
+            }
+        }
+    }
+
+    override fun setNotificationBarRevealed(revealed: Boolean) {
+        (if (revealed) notificationBarController.reveal else notificationBarController.hide).invoke()
     }
 
     override fun setOriginBtnActive(active: Boolean) {
@@ -187,6 +210,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
     }
 
     companion object {
+        private const val NOTIFICATION_BAR_REVEAL_DURATION = 500L
         fun newInstance() = MapFragment()
     }
 }

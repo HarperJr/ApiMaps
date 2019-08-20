@@ -60,6 +60,7 @@
     <string name="notifying_type_collapse">ДТП</string>
     <string name="notifying_type_ambulance">Неотложенная помощь</string>
     <string name="notifying_type_message">Сообщение</string>
+    <string name="notification_idle_text">Нет уведомлений</string>
 
 
 </resources>
