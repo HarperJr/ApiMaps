@@ -6,6 +6,7 @@ import com.vlsu.maps.di.scope.AppScope
 import com.vlsu.maps.domain.interactor.location.LocationUpdatesProvider
 import com.vlsu.maps.domain.interactor.notification.NotificationsProvider
 import com.vlsu.maps.domain.interactor.offlinemap.MapRegionLoader
+import com.vlsu.maps.domain.interactor.vehicles.VehiclesProvider
 import com.vlsu.maps.domain.model.NotificationType
 import com.vlsu.maps.domain.rx.AppSchedulerProvider
 import com.vlsu.maps.navigation.map.MapScreenRouter
@@ -24,15 +25,17 @@ import javax.inject.Inject
 class MapPresenter @Inject constructor(
     private val locationUpdatesProvider: LocationUpdatesProvider,
     private val notificationsProvider: NotificationsProvider,
+    private val vehiclesProvider: VehiclesProvider,
     private val regionLoader: MapRegionLoader,
     private val mapScreenRouter: MapScreenRouter
 ) : MvpBasePresenter<MapView>() {
 
+    private var notificationTabRevealTimerDisposable = Disposables.disposed()
+    private var hasNotificationsDisposable = Disposables.disposed()
     private var locationUpdatesDisposable = Disposables.disposed()
     private var downloadStatusDisposable = Disposables.disposed()
     private var notificationsDisposable = Disposables.disposed()
-    private var hasNotificationsDisposable = Disposables.disposed()
-    private var notificationTabRevealTimerDisposable = Disposables.disposed()
+    private var vehiclesDisposables = Disposables.disposed()
 
     override fun attachView(view: MapView) {
         super.attachView(view)
@@ -57,11 +60,17 @@ class MapPresenter @Inject constructor(
                     it.showNotification(notification)
                 }
             }, Timber::e)
+        vehiclesDisposables = vehiclesProvider.vehicles()
+            .subscribeOn(AppSchedulerProvider.io())
+            .observeOn(AppSchedulerProvider.ui())
+            .subscribe({ vehicles ->
+                Timber.d(vehicles)
+            }, Timber::e)
     }
 
     override fun detachView() {
         locationUpdatesProvider.stopUpdates()
-
+        vehiclesDisposables.dispose()
         locationUpdatesDisposable.dispose()
         downloadStatusDisposable.dispose()
 
@@ -148,10 +157,10 @@ class MapPresenter @Inject constructor(
     }
 
     private fun disposeLocationUpdates() {
-        locationUpdatesProvider.stopUpdates()
-        locationUpdatesDisposable.dispose()
-        hasNotificationsDisposable.dispose()
         notificationTabRevealTimerDisposable.dispose()
+        locationUpdatesProvider.stopUpdates()
+        hasNotificationsDisposable.dispose()
+        locationUpdatesDisposable.dispose()
 
         ifViewAttached { it.setOriginBtnActive(false) }
     }

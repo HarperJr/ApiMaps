@@ -107,7 +107,7 @@ class MapFragment : MvpViewStateFragment<MapView, MapPresenter, MapViewState>(),
         dialog.apply {
             window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
             window?.attributes?.gravity = Gravity.TOP
-            window?.attributes?.verticalMargin = 0.1f
+            window?.attributes?.verticalMargin = 0.06f
             show()
         }
 

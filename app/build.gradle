@@ -12,6 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField('String', 'TEST_TUNNEL_HOST', '"192.168.43.43"')
+        buildConfigField('int', 'TEST_TUNNEL_PORT', '3487')
     }
     buildTypes {
         debug {
@@ -23,7 +26,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            buildConfigField('String', 'DATABASE_NAME', '"local.db"')
+            buildConfigField('String', 'DATABASE_NAME', '"maps.db"')
             buildConfigField('int', 'DATABASE_VERSION', '1')
             buildConfigField('String', 'MAPBOX_TOKEN', '"pk.eyJ1IjoiaGFycGVyanIiLCJhIjoiY2pzaG1kNjV1MDkzNzQzbGk0NDMwendrMSJ9.fPUWoaQetd1JgyFHaIXTGw"')
         }
